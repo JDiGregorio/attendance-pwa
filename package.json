@@ -2,6 +2,7 @@
   "name": "attendance-pwa",
   "version": "0.1.0",
   "private": true,
+  "proxy": "https://beneficiarios.camposdeesperanza.org",
   "dependencies": {
     "@heroicons/react": "^2.0.18",
     "@reduxjs/toolkit": "^1.9.7",
@@ -14,6 +15,7 @@
     "@types/react-dom": "^18.2.15",
     "@types/react-redux": "^7.1.31",
     "axios": "^1.6.2",
+    "moment": "^2.29.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-redux": "^8.1.3",
