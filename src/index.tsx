@@ -1,5 +1,6 @@
 import React, { Suspense } from 'react'
 import ReactDOM from 'react-dom/client'
+import { ChakraProvider } from '@chakra-ui/react'
 import { Provider } from 'react-redux'
 import { PersistGate } from 'redux-persist/integration/react'
 import { BrowserRouter } from 'react-router-dom'
@@ -19,19 +20,21 @@ const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 
 root.render(
 	<React.StrictMode>
-		<Suspense fallback={<ThemedSuspense />}>
-			<Provider store={store}>
-				<PersistGate loading={null} persistor={persistor}>
-					<BrowserRouter basename={"/"}>
-						<AppProvider>
-							<AccessibleNavigationAnnouncer />
-							<App />
-							<Toaster position="top-right" richColors closeButton expand={true} />
-						</AppProvider>
-					</BrowserRouter>
-				</PersistGate>
-			</Provider>
-		</Suspense>
+		<ChakraProvider>
+			<Suspense fallback={<ThemedSuspense />}>
+				<Provider store={store}>
+					<PersistGate loading={null} persistor={persistor}>
+						<BrowserRouter basename={"/"}>
+							<AppProvider>
+								<AccessibleNavigationAnnouncer />
+								<App />
+								<Toaster position="top-right" richColors closeButton expand={true} />
+							</AppProvider>
+						</BrowserRouter>
+					</PersistGate>
+				</Provider>
+			</Suspense>
+		</ChakraProvider>
 	</React.StrictMode>
 )
 
