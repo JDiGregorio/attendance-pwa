@@ -1,0 +1,25 @@
+import { createSlice } from '@reduxjs/toolkit'
+
+import { TCommunityState } from '../../types'
+
+const initialState: TCommunityState = {
+	all: []
+}
+
+const communitySlice = createSlice({
+	name: 'community',
+	initialState,
+	reducers: {
+		setCommunities: (state, action) => {
+			return {
+				...state,
+				all: action.payload.communities
+			}
+		},
+		resetState: () => initialState
+	}
+})
+
+export const { setCommunities, resetState } = communitySlice.actions
+
+export default communitySlice.reducer

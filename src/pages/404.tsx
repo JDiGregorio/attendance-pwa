@@ -1,18 +1,19 @@
 import React from 'react'
-import { Icon } from '../utilities'
+
+import { IconSolid } from '../utilities'
 
 const Page404 = () => {
 	return (
-		<div className="">
-			<Icon icon="NoSymbolIcon" className="" aria-hidden="true" />
+		<div className="flex flex-col items-center">
+			<IconSolid icon="NoSymbolIcon" className="w-40 h-40 mt-8 text-red-200" aria-hidden="true" />
 			
-			<h1 className="">
+			<h1 className="text-6xl font-semibold text-gray-700 dark:text-gray-200">
 				404
 			</h1>
 			
-			<p className="">
+			<p className="text-gray-700 dark:text-gray-300">
 				Page not found. Check the address or{' '}
-				<a className="" href="../index.html">
+				<a className="text-purple-600 hover:underline dark:text-purple-300" href="../index.html">
 					go back
 				</a>
 				.

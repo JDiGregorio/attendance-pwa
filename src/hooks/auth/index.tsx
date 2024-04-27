@@ -1,3 +1,4 @@
+import React, { ReactNode } from 'react'
 import { createContext, useContext, useMemo } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
@@ -7,6 +8,16 @@ import { toast } from 'sonner'
 import { TCredentials } from '../../types'
 
 import { persistUser } from '../../redux/reducers/userSlice'
+import { setProjects } from '../../redux/reducers/projectSlice'
+import { setComponents } from '../../redux/reducers/componentSlice'
+import { setActivities } from '../../redux/reducers/activitySlice'
+import { setStates } from '../../redux/reducers/stateSlice'
+import { setMunicipalities } from '../../redux/reducers/municipalitySlice'
+import { setCommunities } from '../../redux/reducers/communitySlice'
+import { setBeneficiaryTypes } from '../../redux/reducers/beneficiaryTypeSlice'
+import { setEvents } from '../../redux/reducers/eventSlice'
+import { setSessions } from '../../redux/reducers/sessionSlice'
+import { setBeneficiaries } from '../../redux/reducers/beneficiarySlice'
 
 interface IUserContext {
 	login: ({ email, password }: TCredentials) => Promise<void>
@@ -19,16 +30,15 @@ const UserContext = createContext<IUserContext>({
 })
 
 interface IUserProvider {
-	children: React.ReactNode
+	children: ReactNode
 }
 
-export const UserProvider = ({ children }: IUserProvider) => {
-
+export const UserProvider: React.FC<IUserProvider> = ({ children }) => {
 	const navigate = useNavigate()
 	const dispatch = useDispatch()
 
 	const login = async ({ email, password }: TCredentials) => {
-		await axios.post('/api/login-app', {
+		await axios.post('/api/pwa-login-app', {
 			id: process.env.REACT_APP_CLIENT_ID,
         	secret: process.env.REACT_APP_CLIENT_SECRET,
        	 	email: email,
@@ -37,14 +47,29 @@ export const UserProvider = ({ children }: IUserProvider) => {
 		.then(response => {
 			if (response.status === 200) {
 				const data = response.data
+
+				console.log(data)
 				
 				dispatch(persistUser({
 					isAuthenticated: true,
 					email: email,
-					token: data.token.access_token
+					token: data.token.access_token,
+					user: data.user,
+					permissions: data.permissions
 				}))
+
+				dispatch(setProjects({ projects: data.data.proyectos }))
+				dispatch(setComponents({ components: data.data.componentes }))
+				dispatch(setActivities({ activities: data.data.actividades }))
+				dispatch(setStates({ states: data.data.estados }))
+				dispatch(setMunicipalities({ municipalities: data.data.municipios }))
+				dispatch(setCommunities({ communities: data.data.comunidades }))
+				dispatch(setEvents({ events: data.data.eventos }))
+				dispatch(setSessions({ sessions: data.data.sesiones }))
+				dispatch(setBeneficiaryTypes({ beneficiaryTypes: data.data.beneficiarioTipos }))
+				dispatch(setBeneficiaries({ beneficiaries: data.data.beneficiarios }))
 				
-				navigate('/home')
+				navigate('/sessions')
 			}
 		})
 		.catch(error => {

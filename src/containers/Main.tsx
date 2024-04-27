@@ -1,13 +1,13 @@
-import React from 'react'
+import React, { ReactNode } from 'react'
 
-interface IMain {
-    children: React.ReactNode;
+interface MainProps {
+    children: ReactNode;
 }
 
-const Main = ({ children }: IMain) => {
+const Main: React.FC<MainProps> = ({ children }) => {
     return (
-        <main className="">
-            <div className="">
+        <main className="h-full overflow-y-auto"> {/* flex flex-1 */}
+            <div className="container grid py-4 px-6 mx-auto"> {/* flex w-full */}
 				{children}
 			</div>
         </main>
