@@ -87,11 +87,15 @@ export const generateId = (): string => {
 }
 
 export const removeAccents = (sentence: string): string => {
+    if (sentence === null) {
+        return ""
+    }
+
     return sentence.normalize("NFD").replace(/[\u0300-\u036f]/g, "")
 }
 
 export const getDayName = (day: number): string => {
-    const dayNames = ["Lun", "Mar", "Miérc", "Juev", "Sáb", "Dom"]
+    const dayNames = ["Dom", "Lun", "Mar", "Miérc", "Juev", "Vier", "Sáb"]
 
     return dayNames[day - 1]
 }

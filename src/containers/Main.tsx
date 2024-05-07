@@ -6,8 +6,8 @@ interface MainProps {
 
 const Main: React.FC<MainProps> = ({ children }) => {
     return (
-        <main className="h-full overflow-y-auto"> {/* flex flex-1 */}
-            <div className="container grid py-4 px-6 mx-auto"> {/* flex w-full */}
+        <main className="flex flex-1 overflow-y-auto">
+            <div className="container w-full mx-auto">
 				{children}
 			</div>
         </main>

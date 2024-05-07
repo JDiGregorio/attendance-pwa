@@ -6,6 +6,7 @@ import { toast } from 'sonner'
 
 import BreadCrumb from '../../components/Breadcrumbs'
 import Table from '../../components/Table'
+import AlertConfirm  from '../../components/Alerts/AlertConfirm'
 
 import { TBeneficiary } from '../../types'
 
@@ -29,17 +30,25 @@ const BeneficiariesList = () => {
     const dispatch =  useDispatch()
 
     const handleDelete = (beneficiaryId: number | string) => {
-        dispatch(deleteBeneficiary({
-            beneficiaryId: beneficiaryId
-        }))
-
-        dispatch(detachedBeneficiary({
-            beneficiaryId: beneficiaryId
-        }))
-
-        toast.success('Elemento eliminado', {
-            description: 'El beneficiario ha sido eliminado de forma correcta.'
-        })
+        AlertConfirm({
+			title: "Eliminar beneficiario",
+			description: `¿Está seguro que quiere eliminar este beneficiario? Esta acción es irreversible.`,
+			btnTextAccept: "Continuar",
+			btnTextCancel: "Cancelar",
+			onAccept: () => {
+				dispatch(deleteBeneficiary({
+                    beneficiaryId: beneficiaryId
+                }))
+        
+                dispatch(detachedBeneficiary({
+                    beneficiaryId: beneficiaryId
+                }))
+        
+                toast.success('Beneficiario eliminado', {
+                    description: 'El beneficiario ha sido eliminado de forma correcta.'
+                })
+			}
+		})
     }
 
     const columns = [
@@ -94,10 +103,10 @@ const BeneficiariesList = () => {
     let beneficiaries = beneficiary.all.filter((beneficiary: TBeneficiary) => beneficiary.created === true)
 
     return (
-        <>
+        <div className="py-4 px-6">
             <BreadCrumb
                 links={[
-                    { path: '/sessions', name: 'Sesiones' },
+                    { path: '/home', name: 'Inicio' },
                     { path: null, name: "Lista de beneficiarios" }
                 ]}
             />
@@ -108,7 +117,7 @@ const BeneficiariesList = () => {
                 columns={columns}
                 data={beneficiaries}
             />
-        </>
+        </div>
     )
 }
 

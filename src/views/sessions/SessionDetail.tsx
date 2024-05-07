@@ -16,6 +16,7 @@ import { IconSolid, IconOutline, classNames, pushName } from '../../utilities'
 import { updateAttendance, updateComment, attachAttendance } from '../../redux/reducers/sessionSlice'
 
 const AttendanceDetail = () => {
+    const user = useSelector((state: any) => state.user) // add type selector
     const session = useSelector((state: any) => state.session) // add type selector
     const beneficiary = useSelector((state: any) => state.beneficiary) // add type selector
     
@@ -35,8 +36,8 @@ const AttendanceDetail = () => {
     const handleViewAttach = (session: TSession) => {
         const related = session.beneficiarios.map(beneficiario => beneficiario.id)
 
-        const beneficiaries = beneficiary.all.filter((beneficiary: TBeneficiary) => beneficiary.comunidad_id === session.comunidad_id && !related.includes(beneficiary.id))
-    
+        const beneficiaries = beneficiary.all.filter((beneficiary: TBeneficiary) => !related.includes(beneficiary.id))
+
         const newBeneficiaries = beneficiaries.map((beneficiary: TBeneficiary) => {
             let beneficiaryCopy = { ...beneficiary }
 
@@ -88,11 +89,11 @@ const AttendanceDetail = () => {
         })
     }
 
-    const handleItemClick = (sessionId: number, beneficiaryId: number | string, attended: boolean) => {
+    const handleItemClick = (sessionId: number, beneficiaryId: number | string, checked: boolean) => {
         dispatch(updateAttendance({
             sessionId: sessionId,
             beneficiaryId: beneficiaryId,
-            attended: !attended
+            attended: !checked
         }))
     }
 
@@ -109,15 +110,38 @@ const AttendanceDetail = () => {
 
     // eslint-disable-next-line
     let findSession = session.all.find((session: TSession) => session.id && session.id == id!)
-    let attendenceCounter = findSession.attendances.filter((attendance: TAttendance) => Boolean(attendance.asistio) === true).length
+    let attendenceCounter = findSession.attendances.filter((attendance: TAttendance) => attendance.estado_asistencia === true).length
+
+    const newBeneficiaries = findSession.beneficiarios.map((beneficiary: TBeneficiary) => {
+        let beneficiaryCopy = { ...beneficiary }
+
+        let fullname: string[] = []
+        
+        pushName(beneficiary, 'primer_nombre', fullname)
+        pushName(beneficiary, 'segundo_nombre', fullname)
+        pushName(beneficiary, 'primer_apellido', fullname)
+        pushName(beneficiary, 'segundo_apellido', fullname)
+
+        beneficiaryCopy.fullname = fullname.join(" ")
+        beneficiaryCopy.checked = false
+        
+        return beneficiaryCopy
+    })
+
+    const sortedBeneficiaries = newBeneficiaries.sort((beneficiaryA: TBeneficiary, beneficiaryB: TBeneficiary) => {
+        const nombreCompletoA = beneficiaryA.fullname!.toLowerCase()
+        const nombreCompletoB = beneficiaryB.fullname!.toLowerCase()
+
+        return nombreCompletoA.localeCompare(nombreCompletoB)
+    })
 
     return loading ? (
         <Spinner />
     ) : (
-        <>
+        <div className="py-4 px-6">
             <BreadCrumb
                 links={[
-                    { path: '/sessions', name: 'Sesiones' },
+                    { path: '/home', name: 'Inicio' },
                     { path: null, name: 'Detalle de sesión' }
                 ]}
             />
@@ -128,14 +152,16 @@ const AttendanceDetail = () => {
                 </h2>
 
                 <div className="space-x-2">
-                    <button type="button" onClick={() => handleViewAttach(findSession)} className="inline-flex py-1 px-2 space-x-2 bg-white shadow rounded-md border border-gray-200">
-                        <IconSolid icon="UserPlusIcon" className="h-5 w-5 flex-shrink-0 self-center text-gray-500" aria-hidden="true" />
-                        <span className="hidden lg:block text-sm font-medium text-gray-400">
-                            Adjuntar beneficiarios
-                        </span>
-                    </button>
+                    {user.permissions.createBeneficiary && (
+                        <button type="button" onClick={() => handleViewAttach(findSession)} className="inline-flex py-1 px-2 space-x-2 bg-white shadow rounded-md border border-gray-200">
+                            <IconSolid icon="UserPlusIcon" className="h-5 w-5 flex-shrink-0 self-center text-gray-500" aria-hidden="true" />
+                            <span className="hidden lg:block text-sm font-medium text-gray-400">
+                                Adjuntar beneficiarios
+                            </span>
+                        </button>
+                    )}
 
-                    {findSession.created && (
+                    {user.permissions.createSession && findSession.created && (
                         <Link to={`/sessions/${findSession.id}/edit`} className="inline-flex py-1 px-2 space-x-2 bg-white shadow rounded-md border border-gray-200">
                             <IconSolid icon="PencilSquareIcon" className="h-5 w-5 flex-shrink-0 self-center text-gray-500" aria-hidden="true" />
                             <span className="hidden lg:block text-sm font-medium text-gray-400">
@@ -165,7 +191,7 @@ const AttendanceDetail = () => {
                             <div className="flex space-x-1">
                                 <IconSolid icon="MapPinIcon" className="-ml-0.5 h-4 w-4 flex-shrink-0 self-center text-gray-500" aria-hidden="true" />
                                 <p className="truncate text-sm sm:text-md text-gray-500">
-                                    {`${findSession.estado}, ${findSession.municipio}, ${findSession.comunidad}`}
+                                    {`${findSession.comunidad}, ${findSession.municipio}, ${findSession.estado}`}
                                 </p>
                             </div>
 
@@ -219,32 +245,28 @@ const AttendanceDetail = () => {
                         <Divider classes="border-dashed border-gray-200" />
 
                         <div className="my-5 divide-y divide-gray-200" role="listitem">
-                            {findSession.beneficiarios.length > 0 ? (
+                            {sortedBeneficiaries.length > 0 ? (
 
-                                findSession.beneficiarios.map((beneficiary: TBeneficiary) => {
-                                    let fullname: string[] = []
+                                sortedBeneficiaries.map((beneficiary: TBeneficiary) => {
                                     let attendance = findSession.attendances.find((attendance: TAttendance) => attendance.beneficiario_id === beneficiary.id)
 
-                                    pushName(beneficiary, 'primer_nombre', fullname)
-                                    pushName(beneficiary, 'segundo_nombre', fullname)
-                                    pushName(beneficiary, 'primer_apellido', fullname)
-                                    pushName(beneficiary, 'segundo_apellido', fullname)
-
-                                    let attended = Boolean(attendance.asistio)
+                                    let checked = attendance.estado_asistencia
 
                                     return (
-                                        <div key={beneficiary.id} onClick={() => handleItemClick(attendance.sesion_id, beneficiary.id!, attended)} className="flex justify-between items-center py-2 px-2 cursor-pointer">
+                                        <div key={beneficiary.id} onClick={() => handleItemClick(attendance.evento_sesion_id, beneficiary.id!, checked)} className="flex justify-between items-center py-2 px-2 cursor-pointer">
                                             <div className="inline-flex items-center space-x-2">
                                                 <p className="text-sm font-medium text-gray-500">
-                                                    {fullname.join(" ")}
+                                                    {beneficiary.fullname}
                                                 </p>
                                             </div>
 
-                                            <div className="ml-3 flex h-6 items-center">
-                                                {attended ? (
-                                                    <IconSolid icon="CheckCircleIcon" className="h-5 w-5 flex-shrink-0 self-center text-gray-300" aria-hidden="true" />
+                                            <div className="flex h-6 items-center">
+                                                {checked ? (
+                                                    <IconSolid icon="CheckCircleIcon" className="h-5 w-5 flex-shrink-0 self-center text-green-500" aria-hidden="true" />
                                                 ) : (
-                                                    <IconOutline icon="XCircleIcon" className="h-5 w-5 flex-shrink-0 self-center text-gray-300" aria-hidden="true" />
+                                                    <svg className="flex-shrink-0 self-center fill-gray-100" xmlns="http://www.w3.org/2000/svg" width="17" height="17">
+                                                        <path d="M8 0a8 8 0 1 0 8 8 8.009 8.009 0 0 0-8-8Zm0 12a4 4 0 1 1 0-8 4 4 0 0 1 0 8Z" />
+                                                    </svg>
                                                 )}              
                                             </div>
                                         </div>
@@ -285,7 +307,7 @@ const AttendanceDetail = () => {
                     </div>
                 </div>
             </div>
-        </>
+        </div>
     )
 }
 

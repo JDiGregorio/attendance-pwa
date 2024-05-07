@@ -114,7 +114,7 @@ const ReportCreate = () => {
     return loading ? (
         <Spinner />
     ) : (
-    	<>
+    	<div className="py-4 px-6">
             <BreadCrumb
                 links={[
                     { path: '/reports', name: 'Reportes de actividad' },
@@ -177,7 +177,7 @@ const ReportCreate = () => {
                                         label="Componente"
                                         readonly={false}
                                         required={true}
-                                        isDisabled={false}
+                                        isDisabled={tempReport.proyecto_id ? false : true}
                                         isLoading={false}
                                         isClearable={false}
                                         isSearchable={true}
@@ -194,7 +194,7 @@ const ReportCreate = () => {
                                         label="Tipo de actividad"
                                         readonly={false}
                                         required={true}
-                                        isDisabled={false}
+                                        isDisabled={tempReport.componente_id ? false : true}
                                         isLoading={false}
                                         isClearable={false}
                                         isSearchable={true}
@@ -236,7 +236,7 @@ const ReportCreate = () => {
                                         label="Municipio"
                                         readonly={false}
                                         required={true}
-                                        isDisabled={false}
+                                        isDisabled={tempReport.estado_id ? false : true}
                                         isLoading={false}
                                         isClearable={false}
                                         isSearchable={true}
@@ -253,7 +253,7 @@ const ReportCreate = () => {
                                         label="Comunidad"
                                         readonly={false}
                                         required={true}
-                                        isDisabled={false}
+                                        isDisabled={tempReport.municipio_id ? false : true}
                                         isLoading={false}
                                         isClearable={false}
                                         isSearchable={true}
@@ -368,7 +368,7 @@ const ReportCreate = () => {
                     </>
                 }
             />
-        </>
+        </div>
     )
 }
 

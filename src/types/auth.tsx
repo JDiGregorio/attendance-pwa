@@ -5,11 +5,14 @@ export type TUserState = {
 	token: string | null;
     user: TUser | Partial<TUser>;
 	permissions: TPermission | Partial<TPermission>;
+    lastUpdateDate: Date | null;
+    hasUpdates: boolean;
 }
 
 export type TCredentials = {
     email: string | null;
     password: string | null;
+    hasUpdates: boolean;
 }
 
 type TUser = {
@@ -18,7 +21,7 @@ type TUser = {
     shortname: string | null;
 }
 
-type TPermission = {
+export type TPermission = {
     createReport: boolean;
     createBeneficiary: boolean;
     createSession: boolean;

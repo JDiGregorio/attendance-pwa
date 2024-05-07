@@ -7,7 +7,9 @@ export type TSessionState = {
 
 export type TGroupSessionObject = {
 	[monthKey: string]: {
+		monthKey: string;
 		month: string;
+		monthN: number;
 		year: number;
 		quantity: number;
 		sessions: TSession[];
@@ -15,7 +17,9 @@ export type TGroupSessionObject = {
 }
 
 export type TGroupSession = {
+	monthKey: string;
 	month: string;
+	monthN: number;
 	year: number;
 	quantity: number;
 	sessions: TSession[];
@@ -48,9 +52,10 @@ export type TSession = {
 }
 
 export type TAttendance = {
-	sesion_id: number | string;
+	evento_sesion_id: number | string;
 	beneficiario_id: number | string;
-	asistio: number | boolean;
+	estado_asistencia: boolean;
+	attached?: boolean;
 }
 
 export type TFilters = {

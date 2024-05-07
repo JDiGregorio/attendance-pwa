@@ -8,6 +8,7 @@ interface ITable {
 	title: string;
 	canCreate: boolean;
 	to?: string;
+	state?: any;
 	buttonText?: string;
 	columns: any;
 	data: any;
@@ -36,7 +37,7 @@ const Table: React.FC<ITable> = (props) => {
                 </h2>
 
 				{props.canCreate && (
-                    <Link to={props.to || ""} className="align-bottom inline-flex items-center justify-center cursor-pointer uppercase leading-5 transition-colors duration-150 font-medium focus:outline-none px-4 py-2 rounded-lg text-sm text-white bg-green-600 border border-transparent active:bg-green-600 hover:bg-green-700 focus:ring focus:ring-green-300">
+                    <Link to={props.to || ""} state={props.state} className="align-bottom inline-flex items-center justify-center cursor-pointer uppercase leading-5 transition-colors duration-150 font-medium focus:outline-none px-4 py-2 rounded-lg text-sm text-white bg-green-600 border border-transparent active:bg-green-600 hover:bg-green-700 focus:ring focus:ring-green-300">
                         {props.buttonText}
                     </Link>
                 )}

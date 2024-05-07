@@ -1,5 +1,6 @@
 import React, { useContext } from 'react'
 import { NavLink } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 
 import { SidebarContext } from '../../contexts/SidebarContext'
 
@@ -9,6 +10,8 @@ import routes from '../../routes/sidebar'
 import { IconSolid, classNames } from '../../utilities'
 
 const SidebarContent = () => {
+    const user = useSelector((state: any) => state.user) // add type selector
+
     const { isSidebarOpen, closeSidebar } = useContext(SidebarContext)
 
     return (
@@ -19,7 +22,7 @@ const SidebarContent = () => {
 
             <div className={classNames(isSidebarOpen ? 'h-0 flex-1 overflow-y-auto' : 'flex flex-grow flex-col', 'mt-5')}>
                 <nav className={classNames(isSidebarOpen ? 'px-2' : 'flex-1 px-2 pb-4', 'space-y-4')}>
-                    {routes().map((route, index) => route.canSee ? (
+                    {routes(user.permissions).map((route, index) => route.canSee ? (
                         <NavLink key={index} to={route.path} onClick={closeSidebar} className="space-y-3">
                             {({ isActive }) => (
                                 <span className={classNames(isActive ? 'bg-gray-900 text-gray-400 ' : 'text-white hover:bg-gray-900 hover:text-gray-400', `group flex items-center px-2 py-2 ${isSidebarOpen ? 'text-base' : 'text-sm'} font-medium rounded-md`)}>

@@ -1,13 +1,12 @@
-import React from 'react'
+import React, { ReactNode } from 'react'
 import ReactDOM from 'react-dom/client'
 
-import { IconSolid } from '../../utilities'
+import { IconSolid, IconOutline } from '../../utilities'
 
 interface IAlertModalConfirm {
 	icon: string;
 	iconClasses: string;
-	title: string;
-	description: string;
+	body: ReactNode;
 	btnTextAccept: string;
 	btnTextCancel: string;
 	onAccept: () => void;
@@ -45,24 +44,22 @@ export const AlertModalConfirm = (props: IAlertModalConfirm) => {
 
 							<div className="py-4 space-y-12">
 								<div className="flex flex-col justify-center items-center space-y-6">
-									<IconSolid icon={props.icon} className={props.iconClasses} />
+									<IconOutline icon={props.icon} className={props.iconClasses} />
 
-									<h1 className="text-lg font-medium text-gray-700 uppercase dark:text-gray-200">
-										{props.title}
-									</h1>
-
-									<p className="text-sm font-normal text-gray-400 text-center dark:text-gray-400">
-										{props.description}
-									</p>
+									{props.body}
 								</div>						
 
 								<div className="flex justify-center space-x-3">
-									<button onClick={handleCancel} className="w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 uppercase">
-										{props.btnTextCancel}
+									<button onClick={handleCancel} className="px-4 py-2 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
+										<span className="text-xs font-medium text-gray-700 uppercase">
+											{props.btnTextCancel}
+										</span>
 									</button>
 
-									<button onClick={handleAccept} className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-orange-600 text-base font-medium text-white hover:bg-orange-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 uppercase">
-										{props.btnTextAccept}
+									<button onClick={handleAccept} className="px-4 py-2 w-full inline-flex justify-center rounded-md border border-transparent shadow-sm bg-orange-600 hover:bg-orange-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500">
+										<span className="text-xs font-medium text-white uppercase">
+											{props.btnTextAccept}
+										</span>
 									</button>
 								</div>
 							</div>

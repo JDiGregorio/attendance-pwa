@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { useSelector } from 'react-redux'
 import { toast } from 'sonner'
 
 import withLayout from './Layout'
@@ -13,6 +14,8 @@ import { storage } from '../../utilities'
 import { loginForm } from '../../validations'
 
 const Login = () => {
+    const user = useSelector((state: any) => state.user) // add type selector
+
     const [userCredentials, setUserCredentials] = useState<TCredentials>(credentials)
     const [remember, setRemember] = useState<boolean>(false)
     const [errors, setErrors] = useState<TErrors>({})
@@ -72,6 +75,8 @@ const Login = () => {
 
         if (!Object.keys(newErrors).length) {
             let tempUser = { ...userCredentials }
+            
+            tempUser.hasUpdates = user.hasUpdates
                      
             login(tempUser)
         } else {

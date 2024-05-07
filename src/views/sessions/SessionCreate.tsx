@@ -108,8 +108,8 @@ const SessionCreate = () => {
                 newSession.attendances = auxSession.attendances.map((attendance: TAttendance) => {
                     return {
                         ...attendance,
-                        sesion_id: newSession.id,
-                        asistio: false
+                        evento_sesion_id: newSession.id,
+                        estado_asistencia: false
                     }
                 })
             }
@@ -169,7 +169,7 @@ const SessionCreate = () => {
     return loading ? (
         <Spinner />
     ) : (
-    	<>
+    	<div className="py-4 px-6">
             <BreadCrumb
                 links={[
                     { path: '/sessions', name: 'Sesiones' },
@@ -210,7 +210,7 @@ const SessionCreate = () => {
                                     label="Componente"
                                     readonly={false}
                                     required={true}
-                                    isDisabled={false}
+                                    isDisabled={tempSession.proyecto_id ? false : true}
                                     isLoading={false}
                                     isClearable={false}
                                     isSearchable={true}
@@ -227,7 +227,7 @@ const SessionCreate = () => {
                                     label="Actividad"
                                     readonly={false}
                                     required={true}
-                                    isDisabled={false}
+                                    isDisabled={tempSession.componente_id ? false : true}
                                     isLoading={false}
                                     isClearable={false}
                                     isSearchable={true}
@@ -299,7 +299,7 @@ const SessionCreate = () => {
                     />
                 }
             />
-        </>
+        </div>
     )
 }
 

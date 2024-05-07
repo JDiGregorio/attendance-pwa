@@ -15,11 +15,10 @@ const beneficiaryTypeSlice = createSlice({
 				...state,
 				all: action.payload.beneficiaryTypes
 			}
-		},
-		resetState: () => initialState
+		}
 	}
 })
 
-export const { setBeneficiaryTypes, resetState } = beneficiaryTypeSlice.actions
+export const { setBeneficiaryTypes } = beneficiaryTypeSlice.actions
 
 export default beneficiaryTypeSlice.reducer

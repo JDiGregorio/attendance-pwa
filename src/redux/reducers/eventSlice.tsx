@@ -15,11 +15,10 @@ const eventSlice = createSlice({
 				...state,
 				all: action.payload.events
 			}
-		},
-		resetState: () => initialState
+		}
 	}
 })
 
-export const { setEvents, resetState } = eventSlice.actions
+export const { setEvents } = eventSlice.actions
 
 export default eventSlice.reducer

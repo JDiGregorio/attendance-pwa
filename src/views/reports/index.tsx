@@ -6,6 +6,7 @@ import { toast } from 'sonner'
 
 import BreadCrumb from '../../components/Breadcrumbs'
 import Table from '../../components/Table'
+import AlertConfirm  from '../../components/Alerts/AlertConfirm'
 
 import { IconSolid, IconOutline } from '../../utilities'
 
@@ -26,12 +27,20 @@ const ReportsList = () => {
     const dispatch =  useDispatch()
 
     const handleDelete = (reportId: string) => {
-        dispatch(deleteReport({
-            reportId: reportId
-        }))
+        AlertConfirm({
+			title: "Eliminar reporte",
+			description: `¿Está seguro que quiere eliminar este reporte? Esta acción es irreversible.`,
+			btnTextAccept: "Continuar",
+			btnTextCancel: "Cancelar",
+			onAccept: () => {
+                dispatch(deleteReport({
+                    reportId: reportId
+                }))
 
-        toast.success('Elemento eliminado', {
-            description: 'El reporte de actividad ha sido eliminado de forma correcta.'
+                toast.success('Reporte eliminado', {
+                    description: 'El reporte ha sido eliminado de forma correcta.'
+                })
+            }
         })
     }
 
@@ -85,10 +94,10 @@ const ReportsList = () => {
     ]
 
     return (
-        <>
+        <div className="py-4 px-6">
             <BreadCrumb
                 links={[
-                    { path: '/sessions', name: 'Sesiones' },
+                    { path: '/home', name: 'Inicio' },
                     { path: null, name: "Lista de reportes" }
                 ]}
             />
@@ -101,7 +110,7 @@ const ReportsList = () => {
                 columns={columns}
                 data={report.all}
             />
-        </>
+        </div>
     )
 }
 

@@ -16,7 +16,19 @@ const sessionSlice = createSlice({
 			return {
 				...state,
 				all: action.payload.sessions.map((session: TSession) => {
-					return Object.assign({}, session, { created: false, attached: false, upload: false })
+					return {
+						...session,
+						created: false,
+						attached: false,
+						upload: false,
+						attendances: session.attendances.map((attendance: TAttendance) => {
+							return {
+								...attendance,
+								estado_asistencia: false,
+								attached: false
+							}
+						})
+					}
 				})
 			}
 		},
@@ -36,14 +48,14 @@ const sessionSlice = createSlice({
 						if (attendance.beneficiario_id == action.payload.beneficiaryId) {
 							return {
 								...attendance,
-								asistio: action.payload.attended
+								estado_asistencia: action.payload.attended
 							}
 						}
 
 						return attendance
 					})
 
-					sessionCopy.upload = sessionCopy.attendances.filter((attendance: TAttendance) => Boolean(attendance.asistio) === true).length > 0 ? true : false
+					sessionCopy.upload = sessionCopy.attendances.filter((attendance: TAttendance) => attendance.estado_asistencia === true).length > 0 ? true : false
 
 					return sessionCopy
 			   	}
@@ -97,6 +109,12 @@ const sessionSlice = createSlice({
 				all: newSessions
 			}
 		},
+		deleteSession: (state, action) => {
+			return {
+				...state,
+				all: state.all.filter((session) => session.id !== action.payload.sessionId)
+			}
+		},
 		attachAttendance: (state, action) => {
 			let newSessions = state.all.map((session: TSession) => {
 				if (session.evento_id === action.payload.eventId) {
@@ -104,9 +122,10 @@ const sessionSlice = createSlice({
 					
 					action.payload.beneficiaries.map((beneficiary: TBeneficiary) => {
 						let newAttendance: TAttendance = {
-							sesion_id: sessionCopy.id!,
+							evento_sesion_id: sessionCopy.id!,
 							beneficiario_id: beneficiary.id!,
-							asistio: false
+							estado_asistencia: false,
+							attached: true
 						}
 
 						sessionCopy.attendances = sessionCopy.attendances.concat(newAttendance)
@@ -140,9 +159,10 @@ const sessionSlice = createSlice({
 					let sessionCopy = { ...session }
 
 					let newAttendance: TAttendance = {
-						sesion_id: sessionCopy.id!,
+						evento_sesion_id: sessionCopy.id!,
 						beneficiario_id: newBeneficiary.id,
-						asistio: false
+						estado_asistencia: false,
+						attached: true
 					}
 
 					sessionCopy.attendances = sessionCopy.attendances.concat(newAttendance)
@@ -196,11 +216,10 @@ const sessionSlice = createSlice({
 				...state,
 				all: newSessions
 			}
-		},
-		resetState: () => initialState
+		}
 	}
 })
 
-export const { setSessions, setFilters, updateAttendance, updateComment, setNewSession, updateNewSession, attachAttendance, attachNewBeneficiary, updateAttachedBeneficiary, detachedBeneficiary, resetState } = sessionSlice.actions
+export const { setSessions, setFilters, updateAttendance, updateComment, setNewSession, updateNewSession, deleteSession, attachAttendance, attachNewBeneficiary, updateAttachedBeneficiary, detachedBeneficiary } = sessionSlice.actions
 
 export default sessionSlice.reducer

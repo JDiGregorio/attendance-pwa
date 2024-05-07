@@ -5,7 +5,7 @@ import ModalAction from '../../../components/Modals/ModalAction'
 
 import { TBeneficiary, TFunction } from '../../../types'
 
-import { IconSolid, IconOutline, classNames, removeAccents } from '../../../utilities'
+import { IconSolid, classNames, removeAccents } from '../../../utilities'
 
 interface IAttachBeneficiariesModal {
     root: ReactDOM.Root;
@@ -64,7 +64,7 @@ const AttachBeneficiariesModal: React.FC<IAttachBeneficiariesModal> = (props) =>
     const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const { value } = event.target
 
-        setSearch(value !== "" ? value : null)
+        setSearch(value !== "" ? value : "")
     }
 
     const handleSearch = () => {
@@ -131,15 +131,17 @@ const AttachBeneficiariesModal: React.FC<IAttachBeneficiariesModal> = (props) =>
                                                     </p>
 
                                                     <p className="text-[10px] font-medium text-gray-400">
-                                                        {beneficiary.codigo_de_beneficiario}
+                                                        {beneficiary.codigo_de_beneficiario} - {`${beneficiary.comunidad}`}
                                                     </p>
                                                 </div>
 
                                                 <div className="ml-3 flex h-6 items-center">
                                                     {beneficiary.checked ? (
-                                                        <IconSolid icon="CheckCircleIcon" className="h-5 w-5 flex-shrink-0 self-center text-gray-300" aria-hidden="true" />
+                                                        <IconSolid icon="CheckCircleIcon" className="h-5 w-5 flex-shrink-0 self-center text-green-500" aria-hidden="true" />
                                                     ) : (
-                                                        <IconOutline icon="XCircleIcon" className="h-5 w-5 flex-shrink-0 self-center text-gray-300" aria-hidden="true" />
+                                                        <svg className="flex-shrink-0 self-center fill-gray-100" xmlns="http://www.w3.org/2000/svg" width="17" height="17">
+                                                            <path d="M8 0a8 8 0 1 0 8 8 8.009 8.009 0 0 0-8-8Zm0 12a4 4 0 1 1 0-8 4 4 0 0 1 0 8Z" />
+                                                        </svg>
                                                     )}              
                                                 </div>
                                             </div>

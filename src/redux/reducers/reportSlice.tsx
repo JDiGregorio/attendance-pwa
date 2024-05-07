@@ -10,6 +10,12 @@ const reportSlice = createSlice({
 	name: 'report',
 	initialState,
 	reducers: {
+		setReports: (state, action) => {
+			return {
+				...state,
+				all: action.payload.reports
+			}
+		},
 		setReport: (state, action) => {
 			return {
 				...state,
@@ -35,11 +41,10 @@ const reportSlice = createSlice({
 				...state,
 				all: state.all.filter((report) => report.id !== action.payload.reportId)
 			}
-		},
-		resetState: () => initialState
+		}
 	}
 })
 
-export const { setReport, updateReport, deleteReport, resetState } = reportSlice.actions
+export const { setReports, setReport, updateReport, deleteReport } = reportSlice.actions
 
 export default reportSlice.reducer

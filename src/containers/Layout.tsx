@@ -1,5 +1,6 @@
 import React, { lazy, useContext, Suspense } from 'react'
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, Navigate } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 
 import { SidebarContext } from '../contexts/SidebarContext'
 
@@ -14,10 +15,12 @@ import routes from '../routes'
 const Page404 = lazy(() => import('../pages/404'))
 
 const Layout = () => {
+	const user = useSelector((state: any) => state.user) // add type selector
+
 	const { isSidebarOpen } = useContext(SidebarContext)
 
 	return (
-		<div className={`flex h-screen bg-gray-50 dark:bg-gray-900 ${isSidebarOpen && 'overflow-hidden'}`}>
+		<div className="flex h-screen bg-gray-50 dark:bg-gray-900 overflow-hidden">
 			<Sidebar />
 
 			<div className="flex flex-1 flex-col w-full">
@@ -26,8 +29,8 @@ const Layout = () => {
 				<Main>
 					<Suspense fallback={<ThemedSuspense />}>
 						<Routes>
-							{routes.map((route, index) => (
-								<Route key={index} path={route.path} element={<route.component />} />
+							{routes(user.permissions).map((route, index) => (
+								<Route key={index} path={route.path} element={route.canSee ? (<route.component />) : (<Navigate to="/home" />)} />
 							))}
 
 							<Route path="*" element={<Page404 />} />

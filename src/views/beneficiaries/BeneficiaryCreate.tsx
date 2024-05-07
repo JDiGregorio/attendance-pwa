@@ -71,6 +71,8 @@ const BeneficiaryCreate = () => {
                 }))
             }
         }
+
+        // eslint-disable-next-line
     }, [action])
 
     const handleSubmit = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -151,7 +153,7 @@ const BeneficiaryCreate = () => {
     return loading ? (
         <Spinner />
     ) : (
-    	<>
+    	<div className="py-4 px-6">
             <BreadCrumb
                 links={[
                     { path: '/beneficiaries', name: 'Beneficiarios' },
@@ -364,7 +366,7 @@ const BeneficiaryCreate = () => {
                     </>
                 }
             />
-        </>
+        </div>
     )
 }
 

@@ -17,8 +17,11 @@ export type TBeneficiary = {
 	codigo_beneficiario_hogar: string | null;
 	beneficiario_tipo_id: number | null;
 	estado_id: number | null;
+	estado?: string;
 	municipio_id: number | null;
+	municipio?: string;
 	comunidad_id: number | null;
+	comunidad?: string;
 	fullname?: string | null;
 	checked?: boolean;
 	created: boolean;

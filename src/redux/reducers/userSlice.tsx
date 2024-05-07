@@ -8,7 +8,9 @@ const initialState: TUserState = {
 	email: null,
 	token: null,
 	user: {},
-	permissions: {}
+	permissions: {},
+	lastUpdateDate: null,
+	hasUpdates: false
 }
 
 const userSlice = createSlice({
@@ -31,10 +33,22 @@ const userSlice = createSlice({
 				isOnline: action.payload.isOnline
 			}
 		},
+		setLastUpdateDate: (state, action) => {
+			return {
+				...state,
+				lastUpdateDate: action.payload.date
+			}
+		},
+		logoutUser: (state, action) => {
+			return {
+				...initialState,
+				hasUpdates: action.payload.hasUpdates
+			}
+		},
 		resetState: () => initialState
 	}
 })
 
-export const { persistUser, setIsOnline, resetState } = userSlice.actions
+export const { persistUser, setIsOnline, setLastUpdateDate, logoutUser, resetState } = userSlice.actions
 
 export default userSlice.reducer

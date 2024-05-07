@@ -40,7 +40,7 @@ const App = () => {
 	
 	return (
 		<Routes>
-			<Route path='/' element={user.isAuthenticated ? <Navigate to="/sessions" replace={true} /> : <Login />} />
+			<Route path='/' element={user.isAuthenticated ? <Navigate to="/home" replace={true} /> : <Login />} />
 
 			<Route element={<ProtectRoutes store={store} />}>
 				<Route path='/*' element={<Layout />} />
