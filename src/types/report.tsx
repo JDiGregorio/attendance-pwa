@@ -18,6 +18,7 @@ export type TReport = {
 	asistentes_ninas: number;
 	cde_ponentes_hombres: number;
     cde_ponentes_mujeres: number;
+	archivo_evidencia_asistencia: string | null;
 	notas: string | null;
 }
 

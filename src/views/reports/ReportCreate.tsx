@@ -10,8 +10,9 @@ import FormSection from '../../components/Forms/FormSection'
 import Text from '../../components/Fields/Text'
 import Date from '../../components/Fields/Date'
 import Select2 from '../../components/Fields/Select2'
-import TextArea from '../../components/Fields/TextArea'
 import Number from '../../components/Fields/Number'
+import Upload from '../../components/Fields/Upload'
+import TextArea from '../../components/Fields/TextArea'
 
 import { TReport, TReportErrors, TComponent, TActivity, TMunicipality, TCommunity } from '../../types'
 
@@ -347,9 +348,14 @@ const ReportCreate = () => {
                             buttons={null}
                             GroupForm={
                                 <div className="px-2 sm:px-4 py-3 grid grid-cols-1 gap-x-4 gap-y-4 sm:grid-cols-6">
-                                    {/**
-                                     * Agregar componente para subir un archivo PDF.
-                                     */}
+                                    <Upload
+                                        name="archivo_evidencia_asistencia"
+                                        label="Archivo"
+                                        required={false}
+                                        onChange={() => {}}
+                                        error={null}
+                                    />
+
                                     <TextArea
                                         name="notas"
                                         label="Comentarios"
