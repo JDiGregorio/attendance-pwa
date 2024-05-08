@@ -1,11 +1,13 @@
 import React from 'react'
 
-const ErrorView = (props: any) => (
-    <div>
-        <p className="">
-            {props.message}
-        </p>
-    </div>
+interface IErrorView {
+	message: string | null;
+}
+
+const ErrorView: React.FC<IErrorView> = (props) => (
+    <p className="mt-2 text-sm text-red-600">
+        {props.message}
+    </p>
 )
 
 export default ErrorView

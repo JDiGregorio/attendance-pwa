@@ -16,7 +16,7 @@ const AccessibleNavigationAnnouncer = () => {
     }, [location])
 
     return (
-        <span className="" role="status" aria-live="polite" aria-atomic="true">
+        <span className="sr-only" role="status" aria-live="polite" aria-atomic="true">
             {message}
         </span>
     )
