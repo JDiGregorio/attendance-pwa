@@ -43,6 +43,11 @@ export const UserProvider: React.FC<IUserProvider> = ({ children }) => {
         	secret: process.env.REACT_APP_CLIENT_SECRET,
        	 	email: email,
         	password: password
+		}, {
+			headers: {
+				'Content-Type': 'application/json',
+				'Access-Control-Allow-Origin': '*'
+			}
 		})
 		.then(response => {
 			if (response.status === 200) {

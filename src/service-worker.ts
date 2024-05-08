@@ -27,11 +27,19 @@ const precacheManifest = self.__WB_MANIFEST
 const genHash = (size: number) => [...Array(size)].map(() => Math.floor(Math.random() * 16).toString(16)).join('')
 
 const additionalRoutesToPrecache = [
+	{ url: '/css/main.css', revision: genHash(10) },
 	{ url: '/manifest.json', revision: genHash(10) },
 	{ url: '/service-worker.js', revision: genHash(10) },
 	{ url: '/favicon.ico', revision: genHash(10) },
+	{ url: '/img/logo16.png', revision: genHash(10) },
+	{ url: '/img/logo32.png', revision: genHash(10) },
+	{ url: '/img/logo144.png', revision: genHash(10) },
 	{ url: '/img/logo192.png', revision: genHash(10) },
-	{ url: '/img/logo512.png', revision: genHash(10) }
+	{ url: '/img/logo512.png', revision: genHash(10) },
+	{ url: '/img/screenshots/login-screenshot-narrow.webp', revision: genHash(10) },
+	{ url: '/img/screenshots/login-screenshot-wide.webp', revision: genHash(10) },
+	{ url: '/img/screenshots/home-screenshot-narrow.webp', revision: genHash(10) },
+	{ url: '/img/screenshots/home-screenshot-wide.webp', revision: genHash(10) }
 ]
 
 const modifiedPrecacheManifest = [...precacheManifest, ...additionalRoutesToPrecache]

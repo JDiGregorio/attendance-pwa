@@ -105,7 +105,8 @@ const Header = () => {
                     reports: report.all
                 }, {
                     headers: {
-                        'Content-Type': 'application/json'
+                        'Content-Type': 'application/json',
+                        'Access-Control-Allow-Origin': '*'
                     }
                 }).then(response => {
                     if (response.status === 200) {

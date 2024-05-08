@@ -1,8 +1,6 @@
-import React, { lazy, useContext, Suspense } from 'react'
+import React, { lazy, Suspense } from 'react'
 import { Routes, Route, Navigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-
-import { SidebarContext } from '../contexts/SidebarContext'
 
 import Sidebar from '../components/Sidebar'
 import Header from '../components/Header'
@@ -16,8 +14,6 @@ const Page404 = lazy(() => import('../pages/404'))
 
 const Layout = () => {
 	const user = useSelector((state: any) => state.user) // add type selector
-
-	const { isSidebarOpen } = useContext(SidebarContext)
 
 	return (
 		<div className="flex h-screen bg-gray-50 dark:bg-gray-900 overflow-hidden">

@@ -13,19 +13,60 @@
 	"icons": [
 		{
 			"src": "favicon.ico",
-			"sizes": "64x64 32x32 24x24 16x16",
+			"sizes": "48x48",
 			"type": "image/x-icon"
+		},
+		{
+			"src": "/img/logo16.png",
+			"sizes": "16x16",
+			"type": "image/png"
+		},
+		{ 
+			"src": "/img/logo32.png",
+			"sizes": "32x32",
+			"type": "image/png"
+		},
+		{
+			"src": "/img/logo144.png",
+			"sizes": "144x144",
+			"type": "image/png",
+			"purpose": "any"
 		},
 		{
 			"src": "/img/logo192.png",
 			"type": "image/png",
-			"sizes": "192x192"
+			"sizes": "192x60"
 		},
 		{
 			"src": "/img/logo512.png",
 			"type": "image/png",
-			"sizes": "512x512"
+			"sizes": "512x161"
 		}
   	],
-	"screenshots": []
+	"screenshots": [
+		{
+			"src": "/img/screenshots/login-screenshot-narrow.webp",
+			"type": "image/webp",
+			"sizes": "370x800",
+			"form_factor": "narrow"
+		  },
+		  {
+			"src": "/img/screenshots/home-screenshot-narrow.webp",
+			"type": "image/webp",
+			"sizes": "370x800",
+			"form_factor": "narrow"
+		  },
+		  {
+			"src": "/img/screenshots/login-screenshot-wide.webp",
+			"type": "image/webp",
+			"sizes": "1300x890",
+			"form_factor": "wide"
+		  },
+		  {
+			"src": "/img/screenshots/home-screenshot-wide.webp",
+			"type": "image/webp",
+			"sizes": "1300x890",
+			"form_factor": "wide"
+		  }
+	]
 }

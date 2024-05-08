@@ -42,6 +42,8 @@ const SessionList = () => {
         }, new Set<string>())
 
         setActiveIndexes(Array.from(reduceSessions))
+
+        // eslint-disable-next-line
     }, [])
 
     const handleViewFilters = () => {
