@@ -1,6 +1,5 @@
 import React, { Suspense } from 'react'
 import ReactDOM from 'react-dom/client'
-import { Windmill } from '@windmill/react-ui'
 import { Provider } from 'react-redux'
 import { PersistGate } from 'redux-persist/integration/react'
 import { BrowserRouter } from 'react-router-dom'
@@ -22,21 +21,19 @@ const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 root.render(
 	<React.StrictMode>
 		<Suspense fallback={<ThemedSuspense />}>
-			<Windmill usePreferences>
-				<Provider store={store}>
-					<PersistGate loading={null} persistor={persistor}>
-						<SidebarProvider>
-							<BrowserRouter basename={"/"}>
-								<AppProvider>
-									<AccessibleNavigationAnnouncer />
-									<App />
-									<Toaster position="top-right" richColors closeButton expand={true} />
-								</AppProvider>
-							</BrowserRouter>
-						</SidebarProvider>
-					</PersistGate>
-				</Provider>
-			</Windmill>
+			<Provider store={store}>
+				<PersistGate loading={null} persistor={persistor}>
+					<SidebarProvider>
+						<BrowserRouter basename={"/"}>
+							<AppProvider>
+								<AccessibleNavigationAnnouncer />
+								<App />
+								<Toaster position="top-right" richColors closeButton expand={true} />
+							</AppProvider>
+						</BrowserRouter>
+					</SidebarProvider>
+				</PersistGate>
+			</Provider>
 		</Suspense>
 	</React.StrictMode>
 )

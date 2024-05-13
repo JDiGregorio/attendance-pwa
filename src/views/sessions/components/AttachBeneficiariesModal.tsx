@@ -119,7 +119,7 @@ const AttachBeneficiariesModal: React.FC<IAttachBeneficiariesModal> = (props) =>
                             </p>
 
                             <div className="z-50 h-[400px] flex flex-col space-y-4">
-                                <input type="search" name="search" value={search || ""} onChange={onChange} placeholder="Buscar..." className="py-1.5 pl-3 block w-full text-sm rounded-md leading-5 border-gray-300 focus:border-orange-500 focus:outline-none focus:ring-orange-500 dark:text-gray-300 dark:border-gray-600 dark:focus:border-gray-600 dark:bg-gray-700" />
+                                <input type="search" name="search" value={search || ""} onChange={onChange} placeholder="Buscar..." className="py-1.5 pl-3 block w-full text-sm rounded-md leading-5 border-gray-300 focus:border-orange-500 focus:outline-none focus:ring-orange-500" />
 
                                 <div className="relative h-full overflow-y-auto border-y border-gray-200 divide-y divide-gray-200" role="listitem">
                                     {leakedBeneficiaries.length > 0 ? (

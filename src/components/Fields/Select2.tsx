@@ -37,7 +37,7 @@ const Select2: React.FC<ISelect2> = (props) => {
     return (
         <div className="space-y-1 sm:col-span-3">
             {props.label &&
-                <label htmlFor={props.name} className={classNames(props.required ? "required" : null, "block text-sm font-medium text-gray-700 dark:text-gray-500")}>
+                <label htmlFor={props.name} className={classNames(props.required ? "required" : null, "block text-sm font-medium text-gray-700")}>
                     {props.label}
                 </label>
             }

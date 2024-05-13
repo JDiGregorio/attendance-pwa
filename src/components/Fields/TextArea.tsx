@@ -30,7 +30,7 @@ const TextArea: React.FC<ITextArea> = (props) => {
     return (
         <div className="space-y-1 sm:col-span-6">
             {props.label &&
-                <label htmlFor={props.name} className={classNames(props.required ? "required" : null, "block text-sm font-medium text-gray-700 dark:text-gray-500")}>
+                <label htmlFor={props.name} className={classNames(props.required ? "required" : null, "block text-sm font-medium text-gray-700")}>
                     {props.label}
                 </label>
             }

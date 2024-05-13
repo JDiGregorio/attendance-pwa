@@ -116,14 +116,14 @@ const Login = () => {
                 />
             </div>
 
-            <hr className="my-6 dark:border-gray-600" />
+            <hr className="my-6" />
 
             <div className="space-y-6">
                 <div className="flex items-center justify-between">
                     <div className="flex items-center">
-                        <input type="checkbox" id="remember-me" name="remember-me" checked={remember} onChange={handleRemember} className="h-4 w-4 rounded cursor-pointer border-gray-300 text-gray-400 hover:text-gray-500 focus:ring-0 dark:bg-gray-500" />
+                        <input type="checkbox" id="remember-me" name="remember-me" checked={remember} onChange={handleRemember} className="h-4 w-4 rounded cursor-pointer border-gray-300 text-gray-400 hover:text-gray-500 focus:ring-0" />
 
-                        <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-900 dark:text-gray-600">
+                        <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-900">
                             Recordar usuario
                         </label>
                     </div>

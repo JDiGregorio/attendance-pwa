@@ -1,8 +1,11 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { flexRender, getCoreRowModel, useReactTable } from '@tanstack/react-table'
+import { flexRender, getCoreRowModel, useReactTable, PaginationState } from '@tanstack/react-table'
 
 import EmptyTable from './EmptyTable'
+import { Button, PageButton } from './Button'
+
+import { IconSolid } from '../../utilities'
 
 interface ITable {
 	title: string;
@@ -17,17 +20,22 @@ interface ITable {
 const Table: React.FC<ITable> = (props) => {
 	const { columns, data } = props
 
+	const [pagination, setPagination] = React.useState<PaginationState>({
+		pageIndex: 0,
+		pageSize: 10
+	})
+
 	const table = useReactTable({
 		columns,
 		data,
 		getCoreRowModel: getCoreRowModel(),
+		onPaginationChange: setPagination,
+		state: {
+			pagination
+		}
 	})
 
 	let bgCount = 0
-
-	/**
-	 * Agregar paginación
-	 */
   
 	return (
 		<div className="mt-4 space-y-6">
@@ -52,7 +60,7 @@ const Table: React.FC<ITable> = (props) => {
 									{table.getHeaderGroups().map(headerGroup => (
 										<tr key={headerGroup.id}>
 											{headerGroup.headers.map(header => (
-												<th key={header.id} scope="col" className="group px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+												<th key={header.id} scope="col" className="group px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider" style={{ width: `${header.getSize()}%` }}>
 													<div className="flex items-center justify-between">
 														{header.isPlaceholder ? null : flexRender(header.column.columnDef.header, header.getContext())}
 													</div>
@@ -70,7 +78,7 @@ const Table: React.FC<ITable> = (props) => {
 											return (
 												<tr key={row.id} className={(bgCount % 2) ? "bg-white" : "bg-gray-50"}>
 													{row.getVisibleCells().map(cell => (
-														<td key={cell.id} className="px-6 py-4 whitespace-nowrap" role="cell">
+														<td key={cell.id} className="px-4 py-4 whitespace-nowrap" role="cell">
 															{flexRender(cell.column.columnDef.cell, cell.getContext())}
 														</td>
 													))}
@@ -89,6 +97,67 @@ const Table: React.FC<ITable> = (props) => {
                                         </tr>
 									)}
 								</tbody>
+
+								<tfoot className="bg-gray-50">
+									<tr>
+										<td colSpan={props.columns.length} className="py-2 px-6">
+											<div className="w-full flex justify-between sm:hidden">
+												<Button onClick={() => table.previousPage()} disabled={!table.getCanPreviousPage()}>
+													Anterior
+												</Button>
+
+												<Button onClick={() => table.nextPage()} disabled={!table.getCanNextPage()}>
+													Siguiente
+												</Button>
+											</div>
+
+											<div className="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
+												<nav className="relative z-0 inline-flex rounded-md shadow-sm -space-x-px" aria-label="Pagination">
+													<PageButton className="rounded-l-md" onClick={() => table.firstPage()} disabled={!table.getCanPreviousPage()}>
+														<span className="sr-only">First</span>
+														<IconSolid icon="ChevronDoubleLeftIcon" className="h-4 w-4" aria-hidden="true" />
+													</PageButton>
+
+													<PageButton onClick={() => table.previousPage()} disabled={!table.getCanPreviousPage()}>
+														<span className="sr-only">
+															Previous
+														</span>
+														<IconSolid icon="ChevronLeftIcon" className="h-4 w-4" aria-hidden="true" />
+													</PageButton>
+												</nav>
+
+												{data.length > 0 && (
+													<div className="text-sm text-gray-700">
+														Página{' '}
+														<span className="font-medium">
+															{table.getState().pagination.pageIndex + 1} {' '}
+														</span> 
+														de{' '}
+														<span className="font-medium">
+															{table.getPageCount().toLocaleString()}
+														</span>
+													</div>
+												)}
+
+												<nav className="relative z-0 inline-flex rounded-md shadow-sm -space-x-px" aria-label="Pagination">
+													<PageButton onClick={() => table.nextPage()} disabled={!table.getCanNextPage()}>
+														<span className="sr-only">
+															Next
+														</span>
+														<IconSolid icon="ChevronRightIcon" className="h-4 w-4" aria-hidden="true" />
+													</PageButton>
+
+													<PageButton className="rounded-r-md" onClick={() => table.lastPage()} disabled={!table.getCanNextPage()}>
+														<span className="sr-only">
+															Last
+														</span>
+														<IconSolid icon="ChevronDoubleRightIcon" className="h-4 w-4" aria-hidden="true" />
+													</PageButton>
+												</nav>
+											</div>
+										</td>
+									</tr>
+								</tfoot>
 							</table>
 						</div>
 					</div>

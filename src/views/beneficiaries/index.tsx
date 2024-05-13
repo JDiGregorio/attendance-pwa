@@ -63,7 +63,7 @@ const BeneficiariesList = () => {
                 const { fullname, codigo_de_beneficiario } = info.row.original
     
                 return (
-                    <div className="flex flex-col">                              
+                    <div className="flex flex-col">                           
                         <p className="text-sm font-medium text-gray-500">
                             {fullname}
                         </p>
@@ -73,12 +73,13 @@ const BeneficiariesList = () => {
                         </p>
                     </div>
                 )
-            }
+            },
+            size: 85
         }),
         columnHelper.accessor("actions", {
             id: 'actions',
             header: () => (
-                <span>
+                <span className="w-full flex justify-center">
                     Acciones
                 </span>
             ),
@@ -96,7 +97,8 @@ const BeneficiariesList = () => {
                         </button>
                     </div>
                 )
-            }
+            },
+            size: 15
         })
     ]
     

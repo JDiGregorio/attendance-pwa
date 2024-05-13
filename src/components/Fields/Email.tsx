@@ -31,13 +31,13 @@ const Email: React.FC<IEmail> = (props) => {
     return (
         <div className="space-y-1">
             {props.label &&
-                <label htmlFor={props.name} className={classNames(props.required ? "required" : null, "block text-sm font-medium text-gray-700 dark:text-gray-500")}>
+                <label htmlFor={props.name} className={classNames(props.required ? "required" : null, "block text-sm font-medium text-gray-700")}>
                     {props.label}
                 </label>
             }
 
             {props.readonly === false ? (
-                <input type='email' id={props.name} name={props.name} value={props.value || ""} onChange={onChange} onKeyDown={props.onKeyDown || null} placeholder={props.placeholder || ""} className="py-2 pl-3 pr-10 block w-full text-sm rounded-md leading-5 border-gray-300 focus:border-orange-500 focus:outline-none focus:ring-orange-500 dark:text-gray-300 dark:border-gray-600 dark:focus:border-gray-600 dark:bg-gray-700" />
+                <input type='email' id={props.name} name={props.name} value={props.value || ""} onChange={onChange} onKeyDown={props.onKeyDown || null} placeholder={props.placeholder || ""} className="py-2 pl-3 pr-10 block w-full text-sm rounded-md leading-5 border-gray-300 focus:border-orange-500 focus:outline-none focus:ring-orange-500" />
             ) : (
                 <ReadOnly name={props.name} value={props.value} />
             )}

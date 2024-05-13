@@ -16,10 +16,10 @@ const Layout = () => {
 	const user = useSelector((state: any) => state.user) // add type selector
 
 	return (
-		<div className="flex h-screen bg-gray-50 dark:bg-gray-900 overflow-hidden">
+		<div className="flex h-screen bg-gray-50 overflow-hidden">
 			<Sidebar />
 
-			<div className="flex flex-1 flex-col w-full">
+			<div className="flex flex-col flex-1 w-full">
 				<Header />
 				
 				<Main>

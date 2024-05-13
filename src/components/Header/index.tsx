@@ -1,5 +1,4 @@
 import React, { useContext, useState, useEffect } from 'react'
-// import { WindmillContext } from '@windmill/react-ui'
 import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
@@ -28,7 +27,6 @@ import { setBeneficiaries } from '../../redux/reducers/beneficiarySlice'
 import { setReports } from '../../redux/reducers/reportSlice'
 
 const Header = () => {
-    // const { mode, toggleMode } = useContext(WindmillContext)
     const { toggleSidebar } = useContext(SidebarContext)
 
     const user = useSelector((state: any) => state.user) // add type selector
@@ -71,7 +69,7 @@ const Header = () => {
     const synchronize = () => {
         AlertModalConfirm({
             icon: 'ExclamationTriangleIcon',
-            iconClasses: 'h-16 w-16 text-yellow-500 dark:text-gray-400',
+            iconClasses: 'h-16 w-16 text-yellow-500',
             body: (
                 <div className="space-y-4">
                     {lastDate > currentDate && differenceInDays > 7 ? (
@@ -81,11 +79,11 @@ const Header = () => {
                     ) : (null)}
 
                     <div className="space-y-1">
-                        <h1 className="text-sm font-medium text-gray-500 text-center dark:text-gray-200">
+                        <h1 className="text-sm font-medium text-gray-500 text-center">
                             Este proceso no se puede deshacer.
                         </h1>
 
-                        <p className="text-sm font-normal text-gray-500 text-center dark:text-gray-400">
+                        <p className="text-sm font-normal text-gray-500 text-center">
                             Al sincronizar los datos de asistencia, estos serán enviados al servidor y eliminados de esta aplicación.
                         </p>
                     </div>
@@ -162,8 +160,8 @@ const Header = () => {
     
 
     return (
-        <header className="z-40 py-4 bg-white shadow-bottom dark:bg-gray-800">
-            <div className="flex items-center justify-between lg:justify-end h-full px-6 mx-auto text-purple-600 dark:text-purple-300">
+        <header className="z-40 py-4 bg-white shadow-bottom">
+            <div className="flex items-center justify-between lg:justify-end h-full px-6 mx-auto text-purple-600">
                 <button className="p-1 mr-5 -ml-1 rounded-md lg:hidden focus:outline-none focus:shadow-outline-purple" onClick={toggleSidebar} aria-label="Menu">
                     <IconSolid icon="Bars3Icon" className="w-6 h-6 text-gray-500" aria-hidden="true" />
                 </button>
@@ -172,17 +170,17 @@ const Header = () => {
                     <div className="group relative flex justify-center">
                         <button className="rounded-md focus:outline-none focus:shadow-outline-gray" aria-label="Internet mode">
                             {user.isOnline ? (
-                                <IconSolid icon="SignalIcon" className="w-5 h-5 text-gray-500 dark:text-gray-100" aria-hidden="true" />
+                                <IconSolid icon="SignalIcon" className="w-5 h-5 text-gray-500" aria-hidden="true" />
                             ) : (
-                                <IconSolid icon="SignalSlashIcon" className="w-5 h-5 text-gray-500 dark:text-gray-100" aria-hidden="true" />
+                                <IconSolid icon="SignalSlashIcon" className="w-5 h-5 text-gray-500" aria-hidden="true" />
                             )}
                         </button>
 
-                        <p className="absolute flex justify-center items-center space-x-3 w-72 top-14 left-1 p-2 scale-0 bg-white rounded-md shadow-md border border-gray-200  group-hover:scale-100 dark:bg-gray-700 dark:border-gray-500">
+                        <p className="absolute flex justify-center items-center space-x-3 w-72 top-14 left-1 p-2 scale-0 bg-white rounded-md shadow-md border border-gray-200  group-hover:scale-100">
                             {user.isOnline ? (
-                                <IconSolid icon="WifiIcon" className="w-6 h-6 text-gray-500 dark:text-gray-100" aria-hidden="true" />
+                                <IconSolid icon="WifiIcon" className="w-6 h-6 text-gray-500" aria-hidden="true" />
                             ) : (
-                                <IconSolid icon="NoSymbolIcon" className="w-6 h-6 text-gray-500 dark:text-gray-100" aria-hidden="true" />
+                                <IconSolid icon="NoSymbolIcon" className="w-6 h-6 text-gray-500" aria-hidden="true" />
                             )}
                             
                             <span className="text-sm font-semibold text-gray-400 uppercase">
@@ -196,23 +194,13 @@ const Header = () => {
                     {user.isOnline && (
                         <li className="flex">
                             <button onClick={synchronize} className="relative align-middle rounded-md focus:outline-none focus:shadow-outline-gray" aria-label="Toggle refresh data">
-                                <IconSolid icon="ArrowPathIcon" className="w-6 h-6 text-gray-400 dark:text-yellow-600" aria-hidden="true" />
+                                <IconSolid icon="ArrowPathIcon" className="w-6 h-6 text-gray-400" aria-hidden="true" />
                                 {lastDate > currentDate && differenceInDays > 7 ? (
-                                    <span className="absolute top-0 left-0 inline-block w-3 h-3 transform translate-x-1 -translate-y-1 bg-yellow-600 border-2 border-white rounded-full dark:border-gray-800" aria-hidden="true"></span>
+                                    <span className="absolute top-0 left-0 inline-block w-3 h-3 transform translate-x-1 -translate-y-1 bg-yellow-600 border-2 border-white rounded-full" aria-hidden="true"></span>
                                 ) : (null)}
                             </button>
                         </li>
                     )}
-
-                    {/*<li className="flex">
-                        <button onClick={toggleMode} className="rounded-md focus:outline-none focus:shadow-outline-gray" aria-label="Toggle color mode">
-                            {mode === "dark" ? (
-                                <IconSolid icon="SunIcon" className="w-5 h-5 text-gray-400 dark:text-yellow-600" aria-hidden="true" />
-                            ) : (
-                                <IconSolid icon="MoonIcon" className="w-5 h-5 text-gray-600" aria-hidden="true" />
-                            )}
-                        </button>
-                    </li>*/}
 
                     {user.isOnline && (
                         <li className="relative rounded-full">
@@ -223,11 +211,11 @@ const Header = () => {
                                 </h1>
                             </button>
                             
-                            <div tabIndex={2} ref={dropdown} onBlur={handleUserBlur} className={`${dropdownUserShow ? 'block' : 'hidden'} origin-top-right absolute w-56 p-2 mt-5 text-gray-600 bg-white border border-gray-100 rounded-lg shadow-md min-w-max-content dark:text-gray-300 dark:border-gray-700 dark:bg-gray-700 right-0`} role="menu" aria-orientation="vertical" aria-labelledby="menu-button">
+                            <div tabIndex={2} ref={dropdown} onBlur={handleUserBlur} className={`${dropdownUserShow ? 'block' : 'hidden'} origin-top-right absolute w-56 p-2 mt-5 text-gray-600 bg-white border border-gray-100 rounded-lg shadow-md min-w-max-content right-0`} role="menu" aria-orientation="vertical" aria-labelledby="menu-button">
                                 <ul className="divide-y divide-gray-200" role="menu">
-                                    <li onClick={handleLogout} className="inline-flex items-center space-x-3 cursor-pointer w-full px-2 py-2 transition-colors duration-150 hover:bg-gray-100 dark:hover:bg-gray-800" role="menuitem" id="menu-item-2">
-                                        <IconSolid icon="ArrowLeftOnRectangleIcon" className="w-5 h-5 text-gray-400 dark:text-gray-400" aria-hidden="true" />
-                                        <span className="text-sm font-medium text-gray-500 hover:text-gray-800 dark:text-gray-400 dark:hover:text-gray-200">
+                                    <li onClick={handleLogout} className="inline-flex items-center space-x-3 cursor-pointer w-full px-2 py-2 transition-colors duration-150 hover:bg-gray-100" role="menuitem" id="menu-item-2">
+                                        <IconSolid icon="ArrowLeftOnRectangleIcon" className="w-5 h-5 text-gray-400" aria-hidden="true" />
+                                        <span className="text-sm font-medium text-gray-500 hover:text-gray-800">
                                             Cerrar sesión
                                         </span>
                                     </li>

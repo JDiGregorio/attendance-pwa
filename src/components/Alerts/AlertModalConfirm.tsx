@@ -29,16 +29,16 @@ export const AlertModalConfirm = (props: IAlertModalConfirm) => {
 		<>
 			<div className="fixed z-50 inset-0 overflow-y-hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true">
 				<div className="flex items-center justify-center min-h-screen pt-4 px-4 text-center sm:block sm:p-0">
-					<div onClick={handleCancel} className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity dark:bg-gray-500 dark:bg-opacity-75"></div>
+					<div onClick={handleCancel} className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
 
 					<span className="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
 
 					<div className="max-w-md w-full inline-table align-middle rounded-lg text-left overflow-hidden shadow-xl transform transition-all">
-						<div className="bg-white py-4 px-6 dark:bg-gray-700 dark:divide-gray-500">
+						<div className="bg-white py-4 px-6">
 							<div className="flex justify-end">
-								<button onClick={handleCancel} className="align-middle bg-white rounded-md text-gray-400 hover:text-gray-500 focus:outline-none dark:bg-gray-700">
+								<button onClick={handleCancel} className="align-middle bg-white rounded-md text-gray-400 hover:text-gray-500 focus:outline-none">
 									<span className="sr-only">Close</span>
-									<IconSolid icon="XMarkIcon" className="h-6 w-6 text-gray-500 dark:text-gray-400" />
+									<IconSolid icon="XMarkIcon" className="h-6 w-6 text-gray-500" />
 								</button>
 							</div>
 

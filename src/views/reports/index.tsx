@@ -66,12 +66,13 @@ const ReportsList = () => {
                         </p>
                     </div>
                 )
-            }
+            },
+            size: 85
         }),
         columnHelper.accessor("actions", {
             id: 'actions',
             header: () => (
-                <span>
+                <span className="w-full flex justify-center">
                     Acciones
                 </span>
             ),
@@ -89,7 +90,8 @@ const ReportsList = () => {
                         </button>
                     </div>
                 )
-            }
+            },
+            size: 15
         })
     ]
 
