@@ -18,7 +18,7 @@ export type TReport = {
 	asistentes_ninas: number;
 	cde_ponentes_hombres: number;
     cde_ponentes_mujeres: number;
-	archivo_evidencia_asistencia: string | null;
+	archivo_evidencia_asistencia: Array<Attached>;
 	notas: string | null;
 }
 
@@ -31,4 +31,10 @@ export type TReportErrors = {
 	estado_id?: string;
 	municipio_id?: string;
 	comunidad_id?: string;
+}
+
+export type Attached = {
+	name: string
+    selected: boolean
+    base64: string
 }

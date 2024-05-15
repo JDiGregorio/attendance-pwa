@@ -17,7 +17,7 @@ import TextArea from '../../components/Fields/TextArea'
 import { TReport, TReportErrors, TComponent, TActivity, TMunicipality, TCommunity } from '../../types'
 
 import * as constants from '../../constants'
-import { transformCollection, generateId } from '../../utilities'
+import { transformCollection, generateId, parseFilesBase64 } from '../../utilities'
 
 import { setReport, updateReport } from '../../redux/reducers/reportSlice'
 
@@ -63,6 +63,30 @@ const ReportCreate = () => {
 
         // eslint-disable-next-line
     }, [action])
+
+    const handleChangeUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const { value, name, files } = event.target
+
+        if (value !== '') {
+            let promises = parseFilesBase64(files!)
+
+            Promise.all(promises).then(files => {
+                setTempReport(prevState => ({
+                    ...prevState,
+                    [name]: [...files]
+                }))
+            }, error => {
+                console.error(error)
+            })
+        }
+    }
+
+    const handleClearUpload = (name: string) => {
+        setTempReport(prevState => ({
+            ...prevState,
+            [name]: []
+        }))
+    }
 
     const handleSubmit = (event: any) => {
         event.preventDefault()
@@ -352,7 +376,10 @@ const ReportCreate = () => {
                                         name="archivo_evidencia_asistencia"
                                         label="Archivo"
                                         required={false}
-                                        onChange={() => {}}
+                                        files={tempReport.archivo_evidencia_asistencia}
+                                        onChange={handleChangeUpload}
+                                        onDelete={handleClearUpload}
+                                        accept="application/pdf"
                                         error={null}
                                     />
 

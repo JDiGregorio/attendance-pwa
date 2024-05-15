@@ -108,3 +108,26 @@ export const getMonthName = (month: number): string => {
 
     return monthNames[month - 1]
 }
+
+export const parseFilesBase64 = (files: FileList) => {
+    const newFiles: File[] = Array.from(files)
+
+    const promises = newFiles.map((file: File) => {
+        return (new Promise((resolve, reject) => {
+            const reader = new FileReader()
+            
+            reader.addEventListener('load', (event: any) => {
+                resolve({
+                    'name': file.name,
+                    'selected': false,
+                    'base64': event.target.result
+                })
+            })
+
+            reader.addEventListener('error', reject)
+            reader.readAsDataURL(file)
+        }))
+    })
+
+    return promises
+}

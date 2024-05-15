@@ -89,50 +89,52 @@ const Login = () => {
     return (
         <>
             <hr className="block sm:hidden mb-8" />
+            
+            <form>
+                <div className="space-y-6">
+                    <Email
+                        name="email"
+                        label="Correo electrónico"
+                        readonly={false}
+                        required={true}
+                        placeholder="Correo electrónico"
+                        value={userCredentials.email}
+                        setAction={setUserCredentials}
+                        onKeyDown={handlePressEnter}
+                        error={errors["email"] ?? null}
+                    />
 
-            <div className="space-y-6">
-                <Email
-                    name="email"
-                    label="Correo electrónico"
-                    readonly={false}
-                    required={true}
-                    placeholder="Correo electrónico"
-                    value={userCredentials.email}
-                    setAction={setUserCredentials}
-                    onKeyDown={handlePressEnter}
-                    error={errors["email"] ?? null}
-                />
-
-                <Password
-                    name="password"
-                    label="Contraseña"
-                    readonly={false}
-                    required={true}
-                    placeholder="Contraseña"
-                    value={userCredentials.password}
-                    setAction={setUserCredentials}
-                    onKeyDown={handlePressEnter}
-                    error={errors["password"] ?? null}
-                />
-            </div>
-
-            <hr className="my-6" />
-
-            <div className="space-y-6">
-                <div className="flex items-center justify-between">
-                    <div className="flex items-center">
-                        <input type="checkbox" id="remember-me" name="remember-me" checked={remember} onChange={handleRemember} className="h-4 w-4 rounded cursor-pointer border-gray-300 text-gray-400 hover:text-gray-500 focus:ring-0" />
-
-                        <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-900">
-                            Recordar usuario
-                        </label>
-                    </div>
+                    <Password
+                        name="password"
+                        label="Contraseña"
+                        readonly={false}
+                        required={true}
+                        placeholder="Contraseña"
+                        value={userCredentials.password}
+                        setAction={setUserCredentials}
+                        onKeyDown={handlePressEnter}
+                        error={errors["password"] ?? null}
+                    />
                 </div>
 
-                <button type="submit" onClick={handleSubmit} className="flex w-full py-2 px-4 justify-center rounded-md border border-transparent bg-orange-500 text-sm font-semibold text-white uppercase shadow-sm hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2">
-                    Ingresar
-                </button>
-            </div>
+                <hr className="my-6" />
+
+                <div className="space-y-6">
+                    <div className="flex items-center justify-between">
+                        <div className="flex items-center">
+                            <input type="checkbox" id="remember-me" name="remember-me" checked={remember} onChange={handleRemember} className="h-4 w-4 rounded cursor-pointer border-gray-300 text-gray-400 hover:text-gray-500 focus:ring-0" />
+
+                            <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-900">
+                                Recordar usuario
+                            </label>
+                        </div>
+                    </div>
+
+                    <button type="submit" onClick={handleSubmit} className="flex w-full py-2 px-4 justify-center rounded-md border border-transparent bg-orange-500 text-sm font-semibold text-white uppercase shadow-sm hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2">
+                        Ingresar
+                    </button>
+                </div>
+            </form>
         </>
     )
 }

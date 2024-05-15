@@ -37,7 +37,7 @@ const Password: React.FC<IPassword> = (props) => {
             }
 
             {props.readonly === false ? (
-                <input type='password' id={props.name} name={props.name} value={props.value || ""} onChange={onChange} onKeyDown={props.onKeyDown || null} placeholder={props.placeholder || ""} className="py-2 pl-3 pr-10 block w-full text-sm rounded-md leading-5 border-gray-300 focus:border-orange-500 focus:outline-none focus:ring-orange-500" />
+                <input type='password' id={props.name} name={props.name} value={props.value || ""} onChange={onChange} onKeyDown={props.onKeyDown || null} placeholder={props.placeholder || ""} autoComplete="off" className="py-2 pl-3 pr-10 block w-full text-sm rounded-md leading-5 border-gray-300 focus:border-orange-500 focus:outline-none focus:ring-orange-500" />
             ) : (
                 <ReadOnly name={props.name} value={props.value} />
             )}

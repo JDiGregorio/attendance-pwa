@@ -14,6 +14,6 @@ export const report = {
 	asistentes_ninas: 0,
 	cde_ponentes_hombres: 0,
     cde_ponentes_mujeres: 0,
-	archivo_evidencia_asistencia: null,
+	archivo_evidencia_asistencia: [],
 	notas: null
 }

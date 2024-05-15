@@ -157,8 +157,6 @@ const Header = () => {
         logout()
     }
 
-    
-
     return (
         <header className="z-40 py-4 bg-white shadow-bottom">
             <div className="flex items-center justify-between lg:justify-end h-full px-6 mx-auto text-purple-600">
