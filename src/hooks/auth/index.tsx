@@ -80,9 +80,15 @@ export const UserProvider: React.FC<IUserProvider> = ({ children }) => {
 			}
 		})
 		.catch(error => {
-			toast.error('Advertencia', {
-                description: 'Error de autenticación.'
-            }) 
+			if (error.response.status === 401) {
+				toast.error(error.response.data.title, {
+					description: error.response.data.message
+				}) 
+			} else {
+				toast.error('Advertencia', {
+					description: 'Error de autenticación desconocido, ponganse en contacto con el administrador del sistema.'
+				}) 
+			}
 		})
 	}
 

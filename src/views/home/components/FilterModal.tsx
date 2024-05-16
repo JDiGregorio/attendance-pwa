@@ -46,8 +46,7 @@ const FilterModal: React.FC<IFilterModal> = (props) => {
     }
 
     const components = filters.proyecto_id ? props.data.components.filter((component: TComponent) => component.proyectos.includes(filters.proyecto_id!)) : props.data.components
-    const activities = filters.componente_id ? props.data.activities.filter((activity: TActivity) => activity.componente_id === filters.componente_id) : props.data.activities
-        
+    const activities = filters.componente_id ? props.data.activities.filter((activity: TActivity) => activity.componente_id === filters.componente_id) : props.data.activities 
 
     return (
         <div className="fixed z-40 inset-0 overflow-y-hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true">
@@ -90,8 +89,8 @@ const FilterModal: React.FC<IFilterModal> = (props) => {
                                         isSearchable={true}
                                         placeholder="Seleccionar"
                                         emptyOptions="No se encuentran opciones"
-                                        options={props.data.projects}
-                                        value={filters.proyecto_id ? transformCollection(props.data.projects).find(project => project.value === filters.proyecto_id) : null}
+                                        options={transformCollection(props.data.projects, "nombre")}
+                                        value={filters.proyecto_id ? transformCollection(props.data.projects, "nombre").find(project => project.value === filters.proyecto_id) : null}
                                         setAction={setFilters}
                                     />
                                 </div>
@@ -108,8 +107,8 @@ const FilterModal: React.FC<IFilterModal> = (props) => {
                                         isSearchable={true}
                                         placeholder="Seleccionar"
                                         emptyOptions="No se encuentran opciones"
-                                        options={components}
-                                        value={filters.componente_id ? transformCollection(components).find(component => component.value === filters.componente_id) : null}
+                                        options={transformCollection(components, "nombre")}
+                                        value={filters.componente_id ? transformCollection(components, "nombre").find(component => component.value === filters.componente_id) : null}
                                         setAction={setFilters}
                                     />
                                 </div>
@@ -126,8 +125,8 @@ const FilterModal: React.FC<IFilterModal> = (props) => {
                                         isSearchable={true}
                                         placeholder="Seleccionar"
                                         emptyOptions="No se encuentran opciones"
-                                        options={activities}
-                                        value={filters.actividad_tipo_id ? transformCollection(activities).find(activity => activity.value === filters.actividad_tipo_id) : null}
+                                        options={transformCollection(activities, "nombre")}
+                                        value={filters.actividad_tipo_id ? transformCollection(activities, "nombre").find(activity => activity.value === filters.actividad_tipo_id) : null}
                                         setAction={setFilters}
                                     />
                                 </div>
@@ -144,8 +143,8 @@ const FilterModal: React.FC<IFilterModal> = (props) => {
                                         isSearchable={true}
                                         placeholder="Seleccionar"
                                         emptyOptions="No se encuentran opciones"
-                                        options={props.data.communities}
-                                        value={filters.comunidad_id ? transformCollection(props.data.communities).find(community => community.value === filters.comunidad_id) : null}
+                                        options={transformCollection(props.data.communities, "label")}
+                                        value={filters.comunidad_id ? transformCollection(props.data.communities, "label").find(community => community.value === filters.comunidad_id) : null}
                                         setAction={setFilters}
                                     />
                                 </div>

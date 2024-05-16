@@ -191,8 +191,8 @@ const ReportCreate = () => {
                                         isSearchable={true}
                                         placeholder="Seleccionar"
                                         emptyOptions="No se encuentran opciones"
-                                        options={project.all}
-                                        value={tempReport.proyecto_id ? transformCollection(project.all).find(project => project.value === tempReport.proyecto_id) : null}
+                                        options={transformCollection(project.all, "nombre")}
+                                        value={tempReport.proyecto_id ? transformCollection(project.all, "nombre").find(project => project.value === tempReport.proyecto_id) : null}
                                         setAction={setTempReport}
                                         error={errors["proyecto_id"] ?? null}
                                     />
@@ -208,8 +208,8 @@ const ReportCreate = () => {
                                         isSearchable={true}
                                         placeholder="Seleccionar"
                                         emptyOptions="No se encuentran opciones"
-                                        options={components}
-                                        value={tempReport.componente_id ? transformCollection(components).find(component => component.value === tempReport.componente_id) : null}
+                                        options={transformCollection(components, "nombre")}
+                                        value={tempReport.componente_id ? transformCollection(components, "nombre").find(component => component.value === tempReport.componente_id) : null}
                                         setAction={setTempReport}
                                         error={errors["componente_id"] ?? null}
                                     />
@@ -225,8 +225,8 @@ const ReportCreate = () => {
                                         isSearchable={true}
                                         placeholder="Seleccionar"
                                         emptyOptions="No se encuentran opciones"
-                                        options={activities}
-                                        value={tempReport.actividad_tipo_id ? transformCollection(activities).find(activity => activity.value === tempReport.actividad_tipo_id) : null}
+                                        options={transformCollection(activities, "nombre")}
+                                        value={tempReport.actividad_tipo_id ? transformCollection(activities, "nombre").find(activity => activity.value === tempReport.actividad_tipo_id) : null}
                                         setAction={setTempReport}
                                         error={errors["actividad_tipo_id"] ?? null}
                                     />
@@ -250,8 +250,8 @@ const ReportCreate = () => {
                                         isSearchable={true}
                                         placeholder="Seleccionar"
                                         emptyOptions="No se encuentran opciones"
-                                        options={state.all}
-                                        value={tempReport.estado_id ? transformCollection(state.all).find(state => state.value === tempReport.estado_id) : null}
+                                        options={transformCollection(state.all, "nombre")}
+                                        value={tempReport.estado_id ? transformCollection(state.all, "nombre").find(state => state.value === tempReport.estado_id) : null}
                                         setAction={setTempReport}
                                         error={errors["estado_id"] ?? null}
                                     />
@@ -267,8 +267,8 @@ const ReportCreate = () => {
                                         isSearchable={true}
                                         placeholder="Seleccionar"
                                         emptyOptions="No se encuentran opciones"
-                                        options={municipalities}
-                                        value={tempReport.municipio_id ? transformCollection(municipality.all).find(municipality => municipality.value === tempReport.municipio_id) : null}
+                                        options={transformCollection(municipalities, "nombre")}
+                                        value={tempReport.municipio_id ? transformCollection(municipality.all, "nombre").find(municipality => municipality.value === tempReport.municipio_id) : null}
                                         setAction={setTempReport}
                                         error={errors["municipio_id"] ?? null}
                                     />
@@ -284,8 +284,8 @@ const ReportCreate = () => {
                                         isSearchable={true}
                                         placeholder="Seleccionar"
                                         emptyOptions="No se encuentran opciones"
-                                        options={communities}
-                                        value={tempReport.comunidad_id ? transformCollection(community.all).find(community => community.value === tempReport.comunidad_id) : null}
+                                        options={transformCollection(communities, "nombre")}
+                                        value={tempReport.comunidad_id ? transformCollection(community.all, "nombre").find(community => community.value === tempReport.comunidad_id) : null}
                                         setAction={setTempReport}
                                         error={errors["comunidad_id"] ?? null}
                                     />

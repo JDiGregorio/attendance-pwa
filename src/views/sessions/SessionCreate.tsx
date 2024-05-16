@@ -199,8 +199,8 @@ const SessionCreate = () => {
                                     isSearchable={true}
                                     placeholder="Seleccionar"
                                     emptyOptions="No se encuentran opciones"
-                                    options={project.all}
-                                    value={tempSession.proyecto_id ? transformCollection(project.all).find(project => project.value === tempSession.proyecto_id) : null}
+                                    options={transformCollection(project.all, "nombre")}
+                                    value={tempSession.proyecto_id ? transformCollection(project.all, "nombre").find(project => project.value === tempSession.proyecto_id) : null}
                                     setAction={setTempSession}
                                     error={errors["proyecto_id"] ?? null}
                                 />
@@ -216,8 +216,8 @@ const SessionCreate = () => {
                                     isSearchable={true}
                                     placeholder="Seleccionar"
                                     emptyOptions="No se encuentran opciones"
-                                    options={components}
-                                    value={tempSession.componente_id ? transformCollection(components).find(component => component.value === tempSession.componente_id) : null}
+                                    options={transformCollection(components, "nombre")}
+                                    value={tempSession.componente_id ? transformCollection(components, "nombre").find(component => component.value === tempSession.componente_id) : null}
                                     setAction={setTempSession}
                                     error={errors["componente_id"] ?? null}
                                 />
@@ -233,8 +233,8 @@ const SessionCreate = () => {
                                     isSearchable={true}
                                     placeholder="Seleccionar"
                                     emptyOptions="No se encuentran opciones"
-                                    options={activities}
-                                    value={tempSession.actividad_tipo_id ? transformCollection(activities).find(activity => activity.value === tempSession.actividad_tipo_id) : null}
+                                    options={transformCollection(activities, "nombre")}
+                                    value={tempSession.actividad_tipo_id ? transformCollection(activities, "nombre").find(activity => activity.value === tempSession.actividad_tipo_id) : null}
                                     setAction={setTempSession}
                                     error={errors["actividad_tipo_id"] ?? null}
                                 />
@@ -250,8 +250,8 @@ const SessionCreate = () => {
                                     isSearchable={true}
                                     placeholder="Seleccionar"
                                     emptyOptions="No se encuentran opciones"
-                                    options={community.all}
-                                    value={tempSession.comunidad_id ? transformCollection(community.all).find(community => community.value === tempSession.comunidad_id) : null}
+                                    options={transformCollection(community.all, "label")}
+                                    value={tempSession.comunidad_id ? transformCollection(community.all, "label").find(community => community.value === tempSession.comunidad_id) : null}
                                     setAction={setTempSession}
                                     error={errors["comunidad_id"] ?? null}
                                 />
@@ -269,8 +269,8 @@ const SessionCreate = () => {
                                     isSearchable={true}
                                     placeholder="Seleccionar"
                                     emptyOptions="No se encuentran opciones"
-                                    options={events}
-                                    value={tempSession.evento_id ? transformCollection(events).find(event => event.value === tempSession.evento_id) : null}
+                                    options={transformCollection(events, "nombre")}
+                                    value={tempSession.evento_id ? transformCollection(events, "nombre").find(event => event.value === tempSession.evento_id) : null}
                                     setAction={setTempSession}
                                     error={errors["evento_id"] ?? null}
                                 />

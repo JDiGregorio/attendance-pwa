@@ -30,13 +30,14 @@ export const classNames = (...classes: (string | undefined | null)[]): string =>
     return classes.filter(Boolean).join(' ')
 }
 
-export const transformCollection = (collection: TCollection[]) => {
+export const transformCollection = (collection: TCollection[], key: string) => {
     return collection.reduce((accum: TNewCollection[], item: TCollection) => {
         return [
             ...accum,
             {
                 value: item.id,
-                label: item.nombre
+                // @ts-ignore
+                label: item[key]
             }
         ]
     }, [])

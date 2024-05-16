@@ -4,8 +4,7 @@ import Select from 'react-select'
 import ReadOnly from './ReadOnly'
 import ErrorView from '../Forms/ErrorView'
 
-import { TCollection } from '../../types'
-import { classNames, transformCollection } from '../../utilities'
+import { classNames } from '../../utilities'
 
 interface ISelect2 {
 	name: string;
@@ -16,7 +15,7 @@ interface ISelect2 {
 	isLoading: boolean;
 	isClearable: boolean;
 	isSearchable: boolean;
-	options: TCollection[];
+	options: any;
 	emptyOptions: string;
     placeholder: string;
 	value: any;
@@ -31,8 +30,6 @@ const Select2: React.FC<ISelect2> = (props) => {
             [props.name]: selected.value
         }))
     }
-
-    const options: any  = transformCollection(props.options) // add type
 
     return (
         <div className="space-y-1 sm:col-span-3">
@@ -54,7 +51,7 @@ const Select2: React.FC<ISelect2> = (props) => {
                     isSearchable={props.isSearchable}  
                     placeholder={props.placeholder}
                     noOptionsMessage={({ inputValue }) => props.emptyOptions}
-                    options={options}
+                    options={props.options}
                     value={props.value}
                     onChange={onChange}
                     theme={theme => ({

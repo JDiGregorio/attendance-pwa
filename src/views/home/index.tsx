@@ -22,7 +22,6 @@ const SessionList = () => {
     const activity = useSelector((state: any) => state.activity) // add type selector
     const community = useSelector((state: any) => state.community) // add type selector
 
-    //const [sessions, setSessions] = useState<TGroupSession[]>([])
     const [activeIndexes, setActiveIndexes] = useState<string[]>([])
 
     const dispatch =  useDispatch()

@@ -7,4 +7,5 @@ export type TCommunity = {
 	nombre: string;
 	estado_id: number;
 	municipio_id: number;
+	label: string;
 }

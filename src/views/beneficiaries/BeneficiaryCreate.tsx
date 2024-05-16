@@ -259,8 +259,8 @@ const BeneficiaryCreate = () => {
                                         isSearchable={true}
                                         placeholder="Seleccionar"
                                         emptyOptions="No se encuentran opciones"
-                                        options={project.all}
-                                        value={tempBeneficiary.proyecto_id ? transformCollection(project.all).find(project => project.value === tempBeneficiary.proyecto_id) : null}
+                                        options={transformCollection(project.all, "nombre")}
+                                        value={tempBeneficiary.proyecto_id ? transformCollection(project.all, "nombre").find(project => project.value === tempBeneficiary.proyecto_id) : null}
                                         setAction={setTempBeneficiary}
                                         error={errors["proyecto_id"] ?? null}
                                     />
@@ -298,8 +298,8 @@ const BeneficiaryCreate = () => {
                                         isSearchable={true}
                                         placeholder="Seleccionar"
                                         emptyOptions="No se encuentran opciones"
-                                        options={beneficiaryType.all}
-                                        value={tempBeneficiary.beneficiario_tipo_id ? transformCollection(beneficiaryType.all).find(beneficiaryType => beneficiaryType.value === tempBeneficiary.beneficiario_tipo_id) : null}
+                                        options={transformCollection(beneficiaryType.all, "nombre")}
+                                        value={tempBeneficiary.beneficiario_tipo_id ? transformCollection(beneficiaryType.all, "nombre").find(beneficiaryType => beneficiaryType.value === tempBeneficiary.beneficiario_tipo_id) : null}
                                         setAction={setTempBeneficiary}
                                         error={errors["beneficiario_tipo_id"] ?? null}
                                     />
@@ -323,8 +323,8 @@ const BeneficiaryCreate = () => {
                                         isSearchable={true}
                                         placeholder="Seleccionar"
                                         emptyOptions="No se encuentran opciones"
-                                        options={departments.all}
-                                        value={tempBeneficiary.estado_id ? transformCollection(departments.all).find(state => state.value === tempBeneficiary.estado_id) : null}
+                                        options={transformCollection(departments.all, "nombre")}
+                                        value={tempBeneficiary.estado_id ? transformCollection(departments.all, "nombre").find(state => state.value === tempBeneficiary.estado_id) : null}
                                         setAction={setTempBeneficiary}
                                         error={errors["estado_id"] ?? null}
                                     />
@@ -340,8 +340,8 @@ const BeneficiaryCreate = () => {
                                         isSearchable={true}
                                         placeholder="Seleccionar"
                                         emptyOptions="No se encuentran opciones"
-                                        options={municipalities}
-                                        value={tempBeneficiary.municipio_id ? transformCollection(municipality.all).find(municipality => municipality.value === tempBeneficiary.municipio_id) : null}
+                                        options={transformCollection(municipalities, "nombre")}
+                                        value={tempBeneficiary.municipio_id ? transformCollection(municipality.all, "nombre").find(municipality => municipality.value === tempBeneficiary.municipio_id) : null}
                                         setAction={setTempBeneficiary}
                                         error={errors["municipio_id"] ?? null}
                                     />
@@ -357,8 +357,8 @@ const BeneficiaryCreate = () => {
                                         isSearchable={true}
                                         placeholder="Seleccionar"
                                         emptyOptions="No se encuentran opciones"
-                                        options={communities}
-                                        value={tempBeneficiary.comunidad_id ? transformCollection(community.all).find(community => community.value === tempBeneficiary.comunidad_id) : null}
+                                        options={transformCollection(communities, "nombre")}
+                                        value={tempBeneficiary.comunidad_id ? transformCollection(community.all, "nombre").find(community => community.value === tempBeneficiary.comunidad_id) : null}
                                         setAction={setTempBeneficiary}
                                         error={errors["comunidad_id"] ?? null}
                                     />
