@@ -14,6 +14,8 @@ import { filtered } from '../../filters/session.state.filter'
 
 import { setFilters } from '../../redux/reducers/sessionSlice'
 
+import { fetchAndDistributeData } from '../../redux/actions/dataActions'
+
 const SessionList = () => {
     const user = useSelector((state: any) => state.user) // add type selector
     const session = useSelector((state: any) => state.session) // add type selector
@@ -44,6 +46,13 @@ const SessionList = () => {
 
         // eslint-disable-next-line
     }, [])
+
+    useEffect(() => {
+        if (user.initialized && !user.hasUpdates) {
+          // @ts-ignore
+          dispatch(fetchAndDistributeData())
+        }
+      }, [dispatch, user])
 
     const handleViewFilters = () => {
         FilterModal({

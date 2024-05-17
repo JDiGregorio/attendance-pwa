@@ -7,12 +7,12 @@ export type TUserState = {
 	permissions: TPermission | Partial<TPermission>;
     lastUpdateDate: Date | null;
     hasUpdates: boolean;
+    initialized: boolean;
 }
 
 export type TCredentials = {
     email: string | null;
     password: string | null;
-    hasUpdates: boolean;
 }
 
 type TUser = {

@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import { useSelector } from 'react-redux'
 import { toast } from 'sonner'
 
 import withLayout from './Layout'
@@ -14,8 +13,6 @@ import { storage } from '../../utilities'
 import { loginForm } from '../../validations'
 
 const Login = () => {
-    const user = useSelector((state: any) => state.user) // add type selector
-
     const [userCredentials, setUserCredentials] = useState<TCredentials>(credentials)
     const [remember, setRemember] = useState<boolean>(false)
     const [errors, setErrors] = useState<TErrors>({})
@@ -73,12 +70,8 @@ const Login = () => {
 
         setErrors(newErrors)
 
-        if (!Object.keys(newErrors).length) {
-            let tempUser = { ...userCredentials }
-            
-            tempUser.hasUpdates = user.hasUpdates
-                     
-            login(tempUser)
+        if (!Object.keys(newErrors).length) {           
+            login(userCredentials)
         } else {
             toast.error('Advertencia', {
                 description: 'Verifique los datos requeridos para poder iniciar sesión.'
@@ -107,7 +100,6 @@ const Login = () => {
                     <Password
                         name="password"
                         label="Contraseña"
-                        readonly={false}
                         required={true}
                         placeholder="Contraseña"
                         value={userCredentials.password}
@@ -124,13 +116,13 @@ const Login = () => {
                         <div className="flex items-center">
                             <input type="checkbox" id="remember-me" name="remember-me" checked={remember} onChange={handleRemember} className="h-4 w-4 rounded cursor-pointer border-gray-300 text-gray-400 hover:text-gray-500 focus:ring-0" />
 
-                            <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-900">
+                            <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-600 font-medium">
                                 Recordar usuario
                             </label>
                         </div>
                     </div>
 
-                    <button type="submit" onClick={handleSubmit} className="flex w-full py-2 px-4 justify-center rounded-md border border-transparent bg-orange-500 text-sm font-semibold text-white uppercase shadow-sm hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2">
+                    <button type="submit" onClick={handleSubmit} className="flex w-full py-2.5 px-4 justify-center rounded-md border border-transparent bg-orange-500 text-sm font-semibold text-white uppercase shadow-sm hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2">
                         Ingresar
                     </button>
                 </div>

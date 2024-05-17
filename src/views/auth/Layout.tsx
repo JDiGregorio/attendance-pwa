@@ -14,12 +14,12 @@ const withLayout = <P extends {}> (WrappedComponent: ComponentType<P>) => {
 
                     <hr className="my-6" />
 
-                    <div className="w-full lg:w-4/5 max-w-sm">
+                    <div className="w-full space-y-6 lg:w-4/5 max-w-sm">
                         <WrappedComponent {...props} />
 
-                        <div className="mt-6 relative flex justify-center">
-                            <p className="px-2 text-sm bg-white text-gray-500 uppercase">
-                                attendance ©{moment().format("Y")}
+                        <div className="relative flex justify-center">
+                            <p className="px-2 text-xs bg-white text-gray-500 font-medium uppercase">
+                                asistencia cde ©{moment().format("Y")}
                             </p>
                         </div>
                     </div>

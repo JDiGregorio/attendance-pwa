@@ -10,7 +10,8 @@ const initialState: TUserState = {
 	user: {},
 	permissions: {},
 	lastUpdateDate: null,
-	hasUpdates: false
+	hasUpdates: false,
+	initialized: false
 }
 
 const userSlice = createSlice({
@@ -24,7 +25,8 @@ const userSlice = createSlice({
 				email: action.payload.email,
 				token: action.payload.token,
 				user: action.payload.user,
-				permissions: action.payload.permissions
+				permissions: action.payload.permissions,
+				initialized: action.payload.initialized
 			}
 		},
 		setIsOnline: (state, action) => {
@@ -39,6 +41,12 @@ const userSlice = createSlice({
 				lastUpdateDate: action.payload.date
 			}
 		},
+		setInitialized: (state, action) => {
+			return {
+				...state,
+				initialized: action.payload.initialized
+			}
+		},
 		logoutUser: (state, action) => {
 			return {
 				...initialState,
@@ -49,6 +57,6 @@ const userSlice = createSlice({
 	}
 })
 
-export const { persistUser, setIsOnline, setLastUpdateDate, logoutUser, resetState } = userSlice.actions
+export const { persistUser, setIsOnline, setLastUpdateDate, setInitialized, logoutUser, resetState } = userSlice.actions
 
 export default userSlice.reducer

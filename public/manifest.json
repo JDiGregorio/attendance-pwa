@@ -1,19 +1,19 @@
 {
-	"short_name": "ATTENDANCE APP",
-	"name": "ATTENDANCE APPLICATION",
-	"description": "Aplicación de asistencia de beneficiarios.",
+	"short_name": "Asistencia CDE",
+	"name": "Aplicación web progresiva de asistencia",
+	"description": "Aplicación de levantamiento de asistencia de beneficiarios",
 	"categories": ["business"],
 	"start_url": ".",
 	"display": "standalone",
-	"orientation": "landscape",
+	"orientation": "any",
 	"lang": "en",
 	"host_permissions": ["<all_urls>"],
 	"theme_color": "#000000",
 	"background_color": "#ffffff",
 	"icons": [
 		{
-			"src": "favicon.ico",
-			"sizes": "48x48",
+			"src": "/favicon.ico",
+			"sizes": "16x16",
 			"type": "image/x-icon"
 		},
 		{
@@ -26,6 +26,21 @@
 			"sizes": "32x32",
 			"type": "image/png"
 		},
+		{ 
+			"src": "/img/logo48.png",
+			"sizes": "48x48",
+			"type": "image/png"
+		},
+		{
+			"src": "/img/logo72.png",
+			"sizes": "72x72",
+			"type": "image/png"
+		},
+		{
+			"src": "/img/logo96.png",
+			"sizes": "96x96",
+			"type": "image/png"
+		},
 		{
 			"src": "/img/logo144.png",
 			"sizes": "144x144",
@@ -35,12 +50,12 @@
 		{
 			"src": "/img/logo192.png",
 			"type": "image/png",
-			"sizes": "192x60"
+			"sizes": "192x192"
 		},
 		{
 			"src": "/img/logo512.png",
 			"type": "image/png",
-			"sizes": "512x161"
+			"sizes": "512x512"
 		}
   	],
 	"screenshots": [

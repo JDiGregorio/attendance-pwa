@@ -3,6 +3,7 @@ import { persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 
 import userReducer from './reducers/userSlice'
+import apiReducer from './reducers/apiSlice'
 import projectReducer from './reducers/projectSlice'
 import componentReducer from './reducers/componentSlice'
 import activityReducer from './reducers/activitySlice'
@@ -17,6 +18,7 @@ import reportReducer from './reducers/reportSlice'
 
 const rootReducer = combineReducers({
     user: userReducer,
+    api: apiReducer,
     project: projectReducer,
     component: componentReducer,
     activity: activityReducer,
@@ -33,7 +35,7 @@ const rootReducer = combineReducers({
 const persistConfig = {
     key: 'root',
     storage,
-    whitelist: ['user', 'project', 'component', 'activity', 'state', 'municipality', 'community', 'event', 'session', 'beneficiaryType', 'beneficiary', 'report']
+    whitelist: ['user', 'api', 'project', 'component', 'activity', 'state', 'municipality', 'community', 'event', 'session', 'beneficiaryType', 'beneficiary', 'report']
 }
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)
