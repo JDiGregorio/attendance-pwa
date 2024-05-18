@@ -142,8 +142,8 @@ const ReportCreate = () => {
     	<div className="py-4 px-6">
             <BreadCrumb
                 links={[
-                    { path: '/reports', name: 'Reportes de actividad' },
-                    { path: null, name: `${action === 'create' ? 'Crear' : 'Editar'}` }
+                    { path: '/reports', icon: "ArrowUturnLeftIcon", name: "Regresar" },
+                    { path: null, icon: null, name: `${action === 'create' ? "Crear" : "Editar"}` }
                 ]}
             />
 

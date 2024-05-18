@@ -14,6 +14,7 @@ import { IconSolid, classNames, getMonthName } from '../../utilities'
 import { useAuth } from '../../hooks/auth'
 
 import { setLastUpdateDate, logoutUser } from '../../redux/reducers/userSlice'
+import { setLoading } from '../../redux/reducers/apiSlice'
 import { setProjects } from '../../redux/reducers/projectSlice'
 import { setComponents } from '../../redux/reducers/componentSlice'
 import { setActivities } from '../../redux/reducers/activitySlice'
@@ -92,6 +93,8 @@ const Header = () => {
             btnTextAccept: 'Continuar',
             btnTextCancel: 'Cancelar',
             onAccept: () => {
+                dispatch(setLoading({ loading: true }))
+
                 let beneficiaries = beneficiary.all.filter((beneficiary: TBeneficiary) => beneficiary.created === true)
                 let newSessions = session.all.filter((session: TSession) => session.created === true || session.attached === true)
                 let sessions = session.all.filter((session: TSession) => session.upload === true)
@@ -123,6 +126,8 @@ const Header = () => {
                         dispatch(setReports({ reports: data.reportes }))
 
                         dispatch(setLastUpdateDate({ date: new Date() }))
+
+                        dispatch(setLoading({ loading: false }))
 
                         toast.success('Sincronización exitosa', {
                             description: 'La sincronización se ha realizado de forma correcta, se han publicado y descargado los datos correspondientes.'

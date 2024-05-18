@@ -9,6 +9,7 @@ interface IBreadCrumb {
 
 type TLink = {
 	path: string | null;
+	icon: string | null;
 	name: string;
 }
 
@@ -16,9 +17,15 @@ const BreadCrumb: React.FC<IBreadCrumb> = ({ links }) => {
 	return (
 		<div className="my-4 flex items-center space-x-2">
 			{links[0].path && (
-				<Link to={links[0].path} className="text-sm text-gray-400 font-semibold">
-					{links[0].name}
-				</Link>
+				<div className="flex space-x-1 items-center">
+					{links[0].icon && (
+						<IconSolid icon={links[0].icon} className="h-3.5 w-3.5 text-gray-500" />
+					)}
+
+					<Link to={links[0].path} className="text-sm text-gray-400 font-semibold">
+						{links[0].name}
+					</Link>
+				</div>
 			)}
 
 			<IconSolid icon="ChevronRightIcon" className="h-3 w-3 text-gray-400" />

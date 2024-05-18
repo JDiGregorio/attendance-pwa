@@ -141,8 +141,8 @@ const AttendanceDetail = () => {
         <div className="py-4 px-6">
             <BreadCrumb
                 links={[
-                    { path: '/home', name: 'Inicio' },
-                    { path: null, name: 'Detalle de sesión' }
+                    { path: '/home', icon: "HomeIcon", name: "Inicio" },
+                    { path: null, icon: null, name: "Detalle de sesión" }
                 ]}
             />
 

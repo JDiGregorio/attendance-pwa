@@ -6,7 +6,7 @@ import { BrowserRouter } from 'react-router-dom'
 import { Toaster } from 'sonner'
 
 import { SidebarProvider } from './contexts/SidebarContext'
-import ThemedSuspense from './components/Navigation/ThemedSuspense'
+import Spinner from './components/Navigation/Spinner'
 import App from './App'
 import AccessibleNavigationAnnouncer from './components/Navigation/AccessibleNavigationAnnouncer'
 import * as serviceWorkerRegistration from './serviceWorkerRegistration'
@@ -20,7 +20,7 @@ const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 
 root.render(
 	<React.StrictMode>
-		<Suspense fallback={<ThemedSuspense />}>
+		<Suspense fallback={<Spinner />}>
 			<Provider store={store}>
 				<PersistGate loading={null} persistor={persistor}>
 					<SidebarProvider>

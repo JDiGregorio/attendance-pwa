@@ -18,7 +18,14 @@ export const fetchAllData = createAsyncThunk(
 const apiSlice = createSlice({
 	name: 'api',
 	initialState,
-	reducers: {},
+	reducers: {
+		setLoading: (state, action) => {
+			return {
+				...state,
+				loading: action.payload.loading
+			}
+		},
+	},
 	extraReducers: (builder) => {
 		builder.addCase(fetchAllData.pending, (state) => {
 			state.loading = true
@@ -33,5 +40,7 @@ const apiSlice = createSlice({
 		})
 	}
 })
+
+export const { setLoading } = apiSlice.actions
 
 export default apiSlice.reducer

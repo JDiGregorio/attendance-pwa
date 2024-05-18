@@ -150,16 +150,14 @@ const BeneficiaryCreate = () => {
     const municipalities =  tempBeneficiary.estado_id ? municipality.all.filter((municipality: TMunicipality) => municipality.estado_id === tempBeneficiary.estado_id) : []
     const communities =  tempBeneficiary.municipio_id ? community.all.filter((community: TCommunity) => community.municipio_id === tempBeneficiary.municipio_id) : []
 
-    console.log(state)
-
     return loading ? (
         <Spinner />
     ) : (
     	<div className="py-4 px-6">
             <BreadCrumb
                 links={[
-                    { path: state && state.redirect ? `/sessions/${state.sessionId}` : '/beneficiaries', name: state && state.redirect ? 'Detalle de sesión' : 'Beneficiarios' },
-                    { path: null, name: `${action === 'create' ? 'Crear beneficiario' : 'Editar'}` }
+                    { path: state && state.redirect ? `/sessions/${state.sessionId}` : '/beneficiaries', icon: "ArrowUturnLeftIcon", name: "Regresar" },
+                    { path: null, icon: null, name: `${action === 'create' ? "Crear beneficiario" : "Editar"}` }
                 ]}
             />
 

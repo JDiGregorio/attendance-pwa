@@ -172,8 +172,8 @@ const SessionCreate = () => {
     	<div className="py-4 px-6">
             <BreadCrumb
                 links={[
-                    { path: '/sessions', name: 'Sesiones' },
-                    { path: null, name: `${action === 'create' ? 'Crear' : 'Editar'}` }
+                    { path: '/sessions', icon: "ArrowUturnLeftIcon", name: "Regresar" },
+                    { path: null, icon: null, name: `${action === 'create' ? "Crear" : "Editar"}` }
                 ]}
             />
 

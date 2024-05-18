@@ -108,8 +108,8 @@ const BeneficiariesList = () => {
         <div className="py-4 px-6">
             <BreadCrumb
                 links={[
-                    { path: '/home', name: 'Inicio' },
-                    { path: null, name: "Lista de beneficiarios" }
+                    { path: '/home', icon: "HomeIcon", name: "Inicio" },
+                    { path: null, icon: null, name: "Lista de beneficiarios" }
                 ]}
             />
 
