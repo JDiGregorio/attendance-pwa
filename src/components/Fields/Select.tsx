@@ -30,13 +30,13 @@ const Select: React.FC<ISelect> = (props) => {
     return (
         <div className="space-y-1 sm:col-span-3">
             {props.label &&
-                <label htmlFor={props.name} className={classNames(props.required ? "required" : null, "block text-sm font-medium text-gray-700")}>
+                <label htmlFor={props.name} className={classNames(props.required ? "required" : null, "block text-sm font-bold text-gray-600")}>
                     {props.label}
                 </label>
             }
 
             {props.readonly === false ? (
-                <select id={props.name} name={props.name} value={props.value || ''} onChange={onChange} className="mt-1 py-2 px-3 block w-full shadow-sm text-sm rounded-md border-gray-300 focus:ring-orange-500 focus:border-orange-500">
+                <select id={props.name} name={props.name} value={props.value || ''} onChange={onChange} className="py-2 block w-full shadow-sm text-sm rounded-md border-gray-300 focus:border-gray-300 focus:outline-none focus:ring-gray-300">
 					<option value="" hidden>
                         Seleccionar
                     </option>

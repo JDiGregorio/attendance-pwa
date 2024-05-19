@@ -21,7 +21,7 @@ const Upload: React.FC<IUpload> = (props) => {
     return (
         <div className="space-y-1 sm:col-span-6">
             {props.label &&
-                <label htmlFor={props.name} className={classNames(props.required ? "required" : null, "block text-sm font-medium text-gray-700")}>
+                <label htmlFor={props.name} className={classNames(props.required ? "required" : null, "block text-sm font-bold text-gray-600")}>
                     {props.label}
                 </label>
             }
@@ -37,7 +37,7 @@ const Upload: React.FC<IUpload> = (props) => {
                     </button>
                 </div>
             ) : (
-                <input type='file' id={props.name} name={props.name} onChange={props.onChange} accept={props.accept} className="block w-full mt-1 p-1 border border-gray-300 focus:ring-gray-300 focus:border-gray-300 text-sm rounded-md" />
+                <input type='file' id={props.name} name={props.name} onChange={props.onChange} accept={props.accept} className="block w-full mt-1 p-1 border border-gray-300 focus:border-gray-300 focus:outline-none focus:ring-gray-300 text-sm rounded-md" />
             )}
 
             {props.error && <ErrorView message={props.error} />}

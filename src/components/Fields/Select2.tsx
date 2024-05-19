@@ -34,7 +34,7 @@ const Select2: React.FC<ISelect2> = (props) => {
     return (
         <div className="space-y-1 sm:col-span-3">
             {props.label &&
-                <label htmlFor={props.name} className={classNames(props.required ? "required" : null, "block text-sm font-medium text-gray-700")}>
+                <label htmlFor={props.name} className={classNames(props.required ? "required" : null, "block text-sm font-bold text-gray-600")}>
                     {props.label}
                 </label>
             }
@@ -58,7 +58,7 @@ const Select2: React.FC<ISelect2> = (props) => {
                         ...theme,
                         colors: {
                             ...theme.colors,
-                            primary: '#22c55e'
+                            primary: '#d1d5db'
                         }
                     })}
                     styles={{

@@ -49,17 +49,17 @@ const Number: React.FC<INumber> = (props) => {
     return (
         <div className="space-y-1 sm:col-span-3">
             {props.label &&
-                <label htmlFor={props.name} className={classNames(props.required ? "required" : null, "block text-sm font-medium text-gray-700")}>
+                <label htmlFor={props.name} className={classNames(props.required ? "required" : null, "block text-sm font-bold text-gray-600")}>
                     {props.label}
                 </label>
             }
 
             {props.readonly === false ? (
-                <div className="py-2 px-3 w-full bg-white border border-gray-300 rounded-lg">
-					<div className="relative w-full flex justify-between items-center gap-x-1" data-hs-input-number="">
-						<input type="text" id={props.name} name={props.name} value={props.value || 0} onChange={onChange} placeholder={props.placeholder} className="p-0 bg-transparent border-0 text-gray-800 focus:ring-0" data-hs-input-number-input pattern="\d*" />
+                <div className="py-2 px-3 w-full bg-white border border-gray-300 rounded-md">
+					<div className="relative w-full flex justify-between items-center" data-hs-input-number="">
+						<input type="text" id={props.name} name={props.name} value={props.value || 0} onChange={onChange} placeholder={props.placeholder} className="w-3/5 p-0 bg-transparent border-0 text-gray-800 focus:ring-0" data-hs-input-number-input pattern="\d*" />
 
-						<div className="flex justify-end items-center gap-x-1.5">
+						<div className="w-2/5 flex justify-end items-center gap-x-2">
 							<button type="button" onClick={() => handleDecrement(props.name)} className="size-6 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-full border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none" data-hs-input-number-decrement>
 								<IconSolid icon="MinusIcon" className="flex-shrink-0 size-3.5" aria-hidden="true" />
 							</button>
