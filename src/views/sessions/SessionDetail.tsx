@@ -147,7 +147,7 @@ const AttendanceDetail = () => {
             />
 
             <div className="flex justify-between mb-8">
-                <h2 className="flex flex-col sm:flex-row sm:items-center text-2xl font-bold text-gray-900">
+                <h2 className="flex flex-col sm:flex-row sm:items-center text-xl font-bold text-gray-900">
                     Detalle de sesión
                 </h2>
 

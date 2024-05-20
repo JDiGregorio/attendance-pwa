@@ -12,8 +12,8 @@ const MobileSidebar = () => {
 
 	return (
         <Transition.Root show={isSidebarOpen} as={Fragment}>
-            <Dialog as="div" className="relative z-40 md:hidden" onClose={toggleSidebar}>
-                <Backdrop />
+            <Dialog as="div" className="relative z-40" onClose={toggleSidebar}>
+                <Backdrop onClose={() => toggleSidebar()} />
 
                 <div className="fixed inset-0 z-40 flex">
                     <Transition.Child as={Fragment} enter="transition ease-in-out duration-300 transform" enterFrom="-translate-x-full" enterTo="translate-x-0" leave="transition ease-in-out duration-400 transform" leaveFrom="translate-x-0" leaveTo="-translate-x-full">

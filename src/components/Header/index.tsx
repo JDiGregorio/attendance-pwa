@@ -164,7 +164,7 @@ const Header = () => {
 
     return (
         <header className="z-40 py-4 bg-white shadow-bottom">
-            <div className="flex items-center justify-between lg:justify-end h-full px-6 mx-auto text-purple-600">
+            <div className="container flex items-center justify-between lg:justify-end h-full px-6 mx-auto text-purple-600">
                 <button className="p-1 mr-5 -ml-1 rounded-md lg:hidden focus:outline-none focus:shadow-outline-purple" onClick={toggleSidebar} aria-label="Menu">
                     <IconSolid icon="Bars3Icon" className="w-6 h-6 text-gray-500" aria-hidden="true" />
                 </button>

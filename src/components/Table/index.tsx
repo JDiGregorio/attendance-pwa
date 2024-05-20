@@ -40,7 +40,7 @@ const Table: React.FC<ITable> = (props) => {
 	return (
 		<div className="mt-4 space-y-6">
             <div className="flex justify-between items-center">
-                <h2 className="flex flex-col sm:flex-row sm:items-center text-2xl font-bold text-gray-900">
+                <h2 className="flex flex-col sm:flex-row sm:items-center text-xl font-bold text-gray-900">
                     {props.title}
                 </h2>
 

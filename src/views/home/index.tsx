@@ -45,7 +45,7 @@ const SessionList = () => {
         setActiveIndexes(Array.from(reduceSessions))
 
         // eslint-disable-next-line
-    }, [])
+    }, [session.all])
 
     useEffect(() => {
         if (user.initialized && !user.hasUpdates) {
@@ -143,7 +143,7 @@ const SessionList = () => {
     return (
         <div className="py-4 px-6 relative space-y-3">
             <div className="flex flex-row justify-between items-end">
-                <h1 className="m-0 text-2xl font-bold text-gray-900">
+                <h1 className="m-0 text-xl font-bold text-gray-900">
                     Sesiones
                 </h1>
             </div>

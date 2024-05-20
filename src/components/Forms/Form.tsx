@@ -18,8 +18,8 @@ const Form: React.FC<IForm> = (props) => {
             {props.HeaderForm ? (
                 props.HeaderForm
             ): (
-                <div className="flex justify-between mb-8">
-                    <h2 className="flex flex-col sm:flex-row sm:items-center text-lg lg:text-2xl font-bold text-gray-900">
+                <div className="flex justify-between items-center mb-8">
+                    <h2 className="flex flex-col sm:flex-row sm:items-center text-xl font-bold text-gray-900">
                         {props.title}
                     </h2>
 
