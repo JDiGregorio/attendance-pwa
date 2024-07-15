@@ -41,10 +41,11 @@ const reportSlice = createSlice({
 				...state,
 				all: state.all.filter((report) => report.id !== action.payload.reportId)
 			}
-		}
+		},
+		resetReportState: () => initialState
 	}
 })
 
-export const { setReports, setReport, updateReport, deleteReport } = reportSlice.actions
+export const { setReports, setReport, updateReport, deleteReport, resetReportState } = reportSlice.actions
 
 export default reportSlice.reducer

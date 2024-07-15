@@ -216,10 +216,11 @@ const sessionSlice = createSlice({
 				...state,
 				all: newSessions
 			}
-		}
+		},
+		resetSessionState: () => initialState
 	}
 })
 
-export const { setSessions, setFilters, updateAttendance, updateComment, setNewSession, updateNewSession, deleteSession, attachAttendance, attachNewBeneficiary, updateAttachedBeneficiary, detachedBeneficiary } = sessionSlice.actions
+export const { setSessions, setFilters, updateAttendance, updateComment, setNewSession, updateNewSession, deleteSession, attachAttendance, attachNewBeneficiary, updateAttachedBeneficiary, detachedBeneficiary, resetSessionState } = sessionSlice.actions
 
 export default sessionSlice.reducer

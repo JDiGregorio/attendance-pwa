@@ -25,6 +25,7 @@ const apiSlice = createSlice({
 				loading: action.payload.loading
 			}
 		},
+		resetApiState: () => initialState
 	},
 	extraReducers: (builder) => {
 		builder.addCase(fetchAllData.pending, (state) => {
@@ -41,6 +42,6 @@ const apiSlice = createSlice({
 	}
 })
 
-export const { setLoading } = apiSlice.actions
+export const { setLoading, resetApiState } = apiSlice.actions
 
 export default apiSlice.reducer

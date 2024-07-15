@@ -44,10 +44,11 @@ const beneficiarySlice = createSlice({
 				...state,
 				all: state.all.filter((beneficiary) => beneficiary.id !== action.payload.beneficiaryId)
 			}
-		}
+		},
+		resetBeneficiaryState: () => initialState
 	}
 })
 
-export const { setBeneficiaries, setNewBeneficiary, updateNewBeneficiary, deleteBeneficiary } = beneficiarySlice.actions
+export const { setBeneficiaries, setNewBeneficiary, updateNewBeneficiary, deleteBeneficiary, resetBeneficiaryState } = beneficiarySlice.actions
 
 export default beneficiarySlice.reducer

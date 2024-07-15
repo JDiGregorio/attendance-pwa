@@ -6,7 +6,7 @@ import { toast } from 'sonner'
 
 import { AlertModalConfirm } from '../Alerts'
 
-import { TBeneficiary, TReport, TSession } from '../../types'
+import { TBeneficiary, TSession } from '../../types'
 
 import { SidebarContext } from '../../contexts/SidebarContext'
 import { IconSolid, classNames, getMonthName } from '../../utilities'
@@ -142,7 +142,11 @@ const Header = () => {
         })
     }
 
-    const hasUpdates = (sessions: TSession[], beneficiaries: TBeneficiary[], reports: TReport[]): boolean => {
+    const hasUpdates = (): boolean => {
+        let sessions = session.all.filter((session: TSession) => session.created === true || session.attached === true || session.upload === true)
+        let beneficiaries = beneficiary.all.filter((beneficiary: TBeneficiary) => beneficiary.created === true)
+        let reports = report.all
+
         if (sessions.length > 0 || beneficiaries.length > 0 || reports.length > 0) {
             return true
         }
@@ -151,12 +155,8 @@ const Header = () => {
     }
 
     const handleLogout = () => {
-        let sessions = session.all.filter((session: TSession) => session.created === true || session.attached === true || session.upload === true)
-        let beneficiaries = beneficiary.all.filter((beneficiary: TBeneficiary) => beneficiary.created === true)
-        let reports = report.all
-
         dispatch(logoutUser({
-            hasUpdates: hasUpdates(sessions, beneficiaries, reports)
+            hasUpdates: hasUpdates()
         }))
 
         logout()
@@ -205,7 +205,7 @@ const Header = () => {
                         </li>
                     )}
 
-                    {user.isOnline && (
+                    {user.isOnline && !hasUpdates() && (
                         <li className="relative rounded-full">
                             <button onClick={() => visibleUserDropdown()} className={classNames(user.user.shortname.length === 1 ? "px-3" : "px-2", "flex py-1.5 max-w-xs items-center rounded-full shadow-2xl bg-orange-600 active:bg-orange-700 hover:bg-orange-500 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2")} aria-label="Account" aria-haspopup="true">
                                 <span className="sr-only">Open user menu</span>  

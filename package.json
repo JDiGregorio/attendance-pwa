@@ -2,7 +2,7 @@
   "name": "attendance-pwa",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://192.168.1.10",
+  "proxy": "http://192.168.137.1",
   "dependencies": {
     "@headlessui/react": "^1.7.18",
     "@heroicons/react": "^2.0.18",

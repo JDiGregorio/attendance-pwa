@@ -53,10 +53,10 @@ const userSlice = createSlice({
 				hasUpdates: action.payload.hasUpdates
 			}
 		},
-		resetState: () => initialState
+		resetUserState: () => initialState
 	}
 })
 
-export const { persistUser, setIsOnline, setLastUpdateDate, setInitialized, logoutUser, resetState } = userSlice.actions
+export const { persistUser, setIsOnline, setLastUpdateDate, setInitialized, logoutUser, resetUserState } = userSlice.actions
 
 export default userSlice.reducer

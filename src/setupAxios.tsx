@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { Store } from 'redux'
 
-import { resetState } from './redux/reducers/userSlice'
+import { resetUserState } from './redux/reducers/userSlice'
 
 const setupAxios = (store: Store) => {
     axios.interceptors.request.use(
@@ -17,7 +17,7 @@ const setupAxios = (store: Store) => {
         },
         error => {
             if (error.response.status === 401) {
-                store.dispatch(resetState())
+                store.dispatch(resetUserState())
             }
 
             return Promise.reject(error)
@@ -30,7 +30,7 @@ const setupAxios = (store: Store) => {
         },
         error => {
             if (error.response.status === 401) {
-                store.dispatch(resetState())
+                store.dispatch(resetUserState())
             }
 
             return Promise.reject(error)

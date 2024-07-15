@@ -7,7 +7,19 @@ import { toast } from 'sonner'
 
 import { TCredentials } from '../../types'
 
-import { persistUser } from '../../redux/reducers/userSlice'
+import { persistUser, resetUserState } from '../../redux/reducers/userSlice'
+import { resetApiState } from '../../redux/reducers/apiSlice'
+import { resetProjectState } from '../../redux/reducers/projectSlice'
+import { resetComponentState } from '../../redux/reducers/componentSlice'
+import { resetActivityState } from '../../redux/reducers/activitySlice'
+import { resetStateState } from '../../redux/reducers/stateSlice'
+import { resetMunicipalityState } from '../../redux/reducers/municipalitySlice'
+import { resetCommunityState } from '../../redux/reducers/communitySlice'
+import { resetEventState } from '../../redux/reducers/eventSlice'
+import { resetSessionState } from '../../redux/reducers/sessionSlice'
+import { resetBeneficiaryTypeState } from '../../redux/reducers/beneficiaryTypeSlice'
+import { resetBeneficiaryState } from '../../redux/reducers/beneficiarySlice'
+import { resetReportState } from '../../redux/reducers/reportSlice'
 
 interface IUserContext {
 	login: ({ email, password }: TCredentials) => Promise<void>
@@ -70,6 +82,20 @@ export const UserProvider: React.FC<IUserProvider> = ({ children }) => {
 
 	const logout = () => {
 		navigate('/')
+
+		dispatch(resetUserState())
+		dispatch(resetApiState())
+		dispatch(resetProjectState())
+		dispatch(resetComponentState())
+		dispatch(resetActivityState())
+		dispatch(resetStateState())
+		dispatch(resetMunicipalityState())
+		dispatch(resetCommunityState())
+		dispatch(resetEventState())
+		dispatch(resetSessionState())
+		dispatch(resetBeneficiaryTypeState())
+		dispatch(resetBeneficiaryState())
+		dispatch(resetReportState())
 	}
 
 	const value = useMemo(() => ({

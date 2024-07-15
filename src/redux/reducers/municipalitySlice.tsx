@@ -15,10 +15,11 @@ const municipalitySlice = createSlice({
 				...state,
 				all: action.payload.municipalities
 			}
-		}
+		},
+		resetMunicipalityState: () => initialState
 	}
 })
 
-export const { setMunicipalities } = municipalitySlice.actions
+export const { setMunicipalities,resetMunicipalityState } = municipalitySlice.actions
 
 export default municipalitySlice.reducer
